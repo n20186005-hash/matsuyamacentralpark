@@ -1,0 +1,27 @@
+{
+  "name": "matsuyama-central-park-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=22.15.0",
+    "pnpm": "11.20.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "build:static": "node scripts/export-static.mjs",
+    "preview": "astro preview",
+    "check": "astro check",
+    "deploy": "pnpm build && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.10",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.1.6",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "wrangler": "4.113.0"
+  }
+}

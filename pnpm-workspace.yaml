@@ -1,0 +1,13 @@
+packages:
+  - .
+
+allowBuilds:
+  esbuild: true
+  sharp: false
+  workerd: true
+
+minimumReleaseAge: 0
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
