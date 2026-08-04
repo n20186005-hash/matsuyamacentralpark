@@ -1,0 +1,15 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+<span class:list={['brand', { 'brand--compact': compact }]}> 
+  <span class="brand__mark" aria-hidden="true">
+    <img src="/logo-mark.svg" alt="" width="48" height="48" />
+  </span>
+  <span class="brand__text">
+    <strong>松山中央公園</strong>
+    {!compact && <small>野球とスポーツの公園</small>}
+  </span>
+</span>

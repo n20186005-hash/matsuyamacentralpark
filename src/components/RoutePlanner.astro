@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import { content } from '../data/site';
+
+interface Props {
+  heading?: string;
+  text?: string;
+}
+const {
+  heading = '今日の過ごし方を選ぶ',
+  text = '興味に近いテーマを選ぶと、おすすめの園内コースを表示します。'
+} = Astro.props;
+const firstRoute = content.routes[0]!;
+---
+<section class="route-planner" data-route-planner>
+  <div class="route-planner__intro">
+    <p class="mini-label">園内プラン</p>
+    <h2>{heading}</h2>
+    <p>{text}</p>
+  </div>
+  <div class="route-planner__choices" role="group" aria-label="興味を選択">
+    {content.routes.map((route, index) => (
+      <button type="button" class:list={['route-choice', { 'is-active': index === 0 }]} data-route-id={route.id} aria-pressed={index === 0 ? 'true' : 'false'}>
+        <Icon name={route.icon} size={22} />
+        <span>{route.name.replace('コース', '')}</span>
+      </button>
+    ))}
+  </div>
+  <div class="route-planner__result" aria-live="polite">
+    <div class="route-planner__result-top">
+      <span class="route-planner__result-icon"><Icon name={firstRoute.icon} size={30} /></span>
+      <div>
+        <p class="mini-label">おすすめ</p>
+        <h3 data-route-title>{firstRoute.name}</h3>
+      </div>
+    </div>
+    <p data-route-summary>{firstRoute.summary}</p>
+    <dl>
+      <div><dt>所要時間</dt><dd data-route-duration>{firstRoute.duration}</dd></div>
+      <div><dt>距離</dt><dd data-route-distance>{firstRoute.distance}</dd></div>
+      <div><dt>向いている時間</dt><dd data-route-recommendation>{firstRoute.recommendation}</dd></div>
+    </dl>
+    <a class="button button--dark" href="/visit/" data-route-link>
+      コースを見る <Icon name="arrow" size={18} />
+    </a>
+  </div>
+  <script type="application/json" data-route-data set:html={JSON.stringify(content.routes)}></script>
+</section>

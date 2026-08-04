@@ -1,0 +1,33 @@
+---
+import Icon from './Icon.astro';
+import type { RouteItem } from '../data/site';
+
+interface Props {
+  route: RouteItem;
+  index: number;
+  compact?: boolean;
+}
+const { route, index, compact = false } = Astro.props;
+---
+<article class:list={['route-card', { 'route-card--compact': compact }]} id={`${route.id}-route`}>
+  <div class="route-card__notch route-card__notch--left"></div>
+  <div class="route-card__notch route-card__notch--right"></div>
+  <header class="route-card__header">
+    <span class="route-card__number">コース {String(index + 1).padStart(2, '0')}</span>
+    <span class="route-card__icon"><Icon name={route.icon} size={26} /></span>
+  </header>
+  <h3>{route.name}</h3>
+  <p>{route.summary}</p>
+  <div class="route-card__meta">
+    <span><strong>{route.duration}</strong> 所要時間</span>
+    <span><strong>{route.distance}</strong> 距離</span>
+  </div>
+  {!compact && (
+    <ol class="route-card__stops">
+      {route.stops.map((stop, stopIndex) => (
+        <li><span>{stopIndex + 1}</span>{stop}</li>
+      ))}
+    </ol>
+  )}
+  <p class="route-card__recommendation">{route.recommendation}</p>
+</article>

@@ -1,0 +1,150 @@
+---
+import '../styles/global.css';
+import { content } from '../data/site';
+import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+  image?: string;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description = content.site.description,
+  currentPath = Astro.url.pathname,
+  image = '/images/og.jpg',
+  bodyClass = ''
+} = Astro.props;
+const pageTitle = title === content.site.name ? title : `${title}｜${content.site.name}`;
+const analyticsId = import.meta.env.PUBLIC_GA_ID as string | undefined;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'SportsActivityLocation'],
+  name: content.site.name,
+  description,
+  image,
+  telephone: content.site.phone,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '790-0948',
+    addressRegion: '愛媛県',
+    addressLocality: '松山市',
+    streetAddress: '市坪西町625番地1',
+    addressCountry: 'JP'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: content.site.latitude,
+    longitude: content.site.longitude
+  },
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: '野球場', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'プール', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '武道館', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'テニスコート', value: true }
+  ]
+};
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#123a63" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    {analyticsId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>
+        <script is:inline define:vars={{ analyticsId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', analyticsId);
+        </script>
+      </>
+    )}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">本文へ移動</a>
+    <header class="site-header" data-site-header>
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="/" aria-label="松山中央公園 ホーム">
+          <Logo />
+        </a>
+        <nav class="desktop-nav" aria-label="メインナビゲーション">
+          {content.navigation.map((item) => (
+            <a class:list={{ 'is-active': currentPath.startsWith(item.href) }} href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+        <a class="header-access" href="/access/">
+          <Icon name="map-pin" size={19} />
+          行き方
+        </a>
+        <details class="mobile-menu">
+          <summary aria-label="メニューを開く"><span></span><span></span><span></span></summary>
+          <nav aria-label="モバイルナビゲーション">
+            <a href="/">ホーム</a>
+            {content.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+            <a href="/credits/">写真クレジット</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div class="site-footer__brand">
+          <a href="/"><Logo /></a>
+          <p>{content.site.description}</p>
+        </div>
+        <div>
+          <h2>園内を知る</h2>
+          <nav aria-label="フッターナビゲーション">
+            {content.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+          </nav>
+        </div>
+        <div>
+          <h2>基本情報</h2>
+          <address>
+            <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+            <a href={`tel:${content.site.phone.replaceAll('-', '')}`}><Icon name="phone" size={18} />{content.site.phone}</a>
+          </address>
+          <a class="text-link text-link--light" href="/credits/">写真クレジット <Icon name="arrow" size={17} /></a>
+        </div>
+      </div>
+      <div class="container site-footer__bottom">
+        <p>© 松山中央公園ガイド</p>
+        <p>愛媛・松山の野球とスポーツをめぐる案内</p>
+      </div>
+    </footer>
+
+    <nav class="mobile-dock" aria-label="クイックナビゲーション">
+      <a class:list={{ 'is-active': currentPath.startsWith('/facilities/') }} href="/facilities/"><Icon name="field" size={20} /><span>施設</span></a>
+      <a class:list={{ 'is-active': currentPath.startsWith('/visit/') }} href="/visit/"><Icon name="route" size={20} /><span>過ごし方</span></a>
+      <a class:list={{ 'is-active': currentPath.startsWith('/access/') }} href="/access/"><Icon name="map-pin" size={20} /><span>行き方</span></a>
+    </nav>
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

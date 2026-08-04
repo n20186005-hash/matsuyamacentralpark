@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FacilityCard from '../../components/FacilityCard.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import { content } from '../../data/site';
+
+const featured = content.facilities.filter((facility) => facility.featured);
+const secondary = content.facilities.filter((facility) => !facility.featured);
+const creditLabels: Record<string, string> = {
+  'botchan-stadium': '松山市役所／クリエイティブ・コモンズ表示4.0',
+  'baseball-museum': 'Carpawa／パブリックドメイン',
+  'aqua-palette': 'CT-May／クリエイティブ・コモンズ・ゼロ',
+  'ehime-budokan': 'Carpawa／パブリックドメイン',
+  'madonna-stadium': 'Carpawa／パブリックドメイン'
+};
+---
+<BaseLayout
+  title="施設案内"
+  description="坊っちゃんスタジアム、の・ボールミュージアム、アクアパレットまつやま、愛媛県武道館など、松山中央公園の主要施設を案内します。"
+  currentPath="/facilities/"
+>
+  <PageHero
+    eyebrow="施設案内"
+    title="観る、知る、泳ぐ、動く。"
+    lead="球場を中心に、野球文化、武道、水泳、テニス、多目的スポーツまで。目的に合う施設を見つけてください。"
+    image="/images/hero-1800.webp"
+    imageMobile="/images/hero-mobile.webp"
+    alt="坊っちゃんスタジアムの外観"
+    current="施設案内"
+  />
+
+  <nav class="anchor-nav" aria-label="主要施設へのページ内リンク">
+    <div class="container anchor-nav__inner">
+      <span>主要施設</span>
+      {featured.map((facility) => <a href={`#${facility.id}`}>{facility.name}</a>)}
+    </div>
+  </nav>
+
+  <section class="section section--paper facilities-intro">
+    <div class="container narrow-copy">
+      <SectionHeading
+        eyebrow="最初に巡りたい四施設"
+        title="公園の個性は、四つの建物に表れています。"
+        text="大規模な野球場、地域の野球史を伝える資料館、家族と競技者が集うプール、愛媛の素材を生かした武道館。それぞれの役割と見どころを整理しました。"
+        align="center"
+      />
+    </div>
+  </section>
+
+  <section class="facility-details section--paper">
+    {featured.map((facility, index) => (
+      <article class:list={['facility-detail', { 'facility-detail--reverse': index % 2 === 1 }]} id={facility.id}>
+        <div class="container facility-detail__grid">
+          <figure class="facility-detail__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset={facility.image} />
+              <img src={facility.imageLarge} alt={facility.alt} width="1800" height="1200" loading={index === 0 ? 'eager' : 'lazy'} />
+            </picture>
+            {creditLabels[facility.id] && <PhotoCredit label={creditLabels[facility.id] ?? ''} />}
+          </figure>
+          <div class="facility-detail__copy">
+            <p class="facility-detail__category"><Icon name={facility.icon} size={22} /> {facility.category}</p>
+            <h2>{facility.name}</h2>
+            <p class="facility-detail__short">{facility.short}</p>
+            <p>{facility.description}</p>
+            <ul class="feature-list">
+              {facility.highlights.map((item) => <li><Icon name="arrow" size={17} />{item}</li>)}
+            </ul>
+            <dl class="info-table">
+              <div><dt><Icon name="clock" size={18} />利用時間</dt><dd>{facility.hours}</dd></div>
+              <div><dt>休館・休場</dt><dd>{facility.closed}</dd></div>
+              <div><dt>料金・利用</dt><dd>{facility.fee}</dd></div>
+              <div><dt>おすすめ</dt><dd>{facility.bestFor}</dd></div>
+            </dl>
+            {facility.id === 'baseball-museum' && (
+              <a class="button button--blue" href="/stories/">展示につながる物語 <Icon name="arrow" size={18} /></a>
+            )}
+            {facility.id === 'aqua-palette' && (
+              <a class="button button--blue" href="/visit/#family-route">親子半日コース <Icon name="arrow" size={18} /></a>
+            )}
+            {facility.id === 'ehime-budokan' && (
+              <a class="button button--blue" href="/visit/#architecture-route">建築・写真コース <Icon name="arrow" size={18} /></a>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="section section--cream" id="other-facilities">
+    <div class="container">
+      <SectionHeading
+        eyebrow="競技を支える施設"
+        title="地域のスポーツが、毎日ここで動いている。"
+        text="観光で立ち寄るだけでなく、練習、大会、地域交流を支える施設が園内に集まっています。"
+      />
+      <div class="facility-grid facility-grid--simple">
+        {secondary.map((facility) => <FacilityCard facility={facility} variant="simple" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper comparison-section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="施設を比べる"
+        title="目的から選ぶ早見表。"
+        text="開場条件や利用料金は催事・予約区分により変わるため、ここでは施設の役割と通常の利用時間をまとめています。"
+      />
+      <div class="table-scroll" tabindex="0" aria-label="施設比較表。横にスクロールできます">
+        <table class="comparison-table">
+          <thead>
+            <tr><th>施設</th><th>主な用途</th><th>通常の利用時間</th><th>向いている人</th></tr>
+          </thead>
+          <tbody>
+            {content.facilities.map((facility) => (
+              <tr>
+                <th scope="row"><a href={`#${facility.id}`}>{facility.name}</a></th>
+                <td>{facility.category}</td>
+                <td>{facility.hours}</td>
+                <td>{facility.bestFor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--blue">
+    <div class="container cta-band__inner">
+      <div>
+        <p class="mini-label">次に決めること</p>
+        <h2>施設が決まったら、歩く順番を選ぶ。</h2>
+        <p>野球文化、親子、建築、ジョギングの四つのモデルコースを用意しています。</p>
+      </div>
+      <a class="button button--gold" href="/visit/">過ごし方を見る <Icon name="arrow" size={19} /></a>
+    </div>
+  </section>
+</BaseLayout>

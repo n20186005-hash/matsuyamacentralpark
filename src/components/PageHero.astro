@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  image: string;
+  imageMobile?: string;
+  alt: string;
+  current: string;
+  tone?: 'blue' | 'night';
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  image,
+  imageMobile,
+  alt,
+  current,
+  tone = 'blue'
+} = Astro.props;
+---
+<section class:list={['page-hero', `page-hero--${tone}`]}> 
+  <picture class="page-hero__media">
+    {imageMobile && <source media="(max-width: 680px)" srcset={imageMobile} />}
+    <img src={image} alt={alt} width="1800" height="1200" fetchpriority="high" />
+  </picture>
+  <div class="page-hero__shade"></div>
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="パンくずリスト">
+      <a href="/">ホーム</a>
+      <Icon name="arrow" size={15} />
+      <span aria-current="page">{current}</span>
+    </nav>
+    <p class="page-hero__eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="page-hero__lead">{lead}</p>
+  </div>
+</section>
