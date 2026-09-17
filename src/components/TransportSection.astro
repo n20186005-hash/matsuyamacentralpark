@@ -1,0 +1,34 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+import { content } from '../data/site';
+---
+
+<section class="section section--paper transport-section" id="transport" aria-labelledby="transport-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="詳しい行き方"
+      title="空港・電車・バス・タクシー・車、全部まとめ。"
+      text="出発地ごとに、目安の時間と乗り継ぎを整理しました。イベント日は時間に余裕を持って移動してください。"
+    />
+    <div class="transport-grid">
+      {content.transport.map((method, index) => (
+        <article class="transport-card" id={`transport-${method.id}`}>
+          <div class="transport-card__head">
+            <span class="transport-card__icon"><Icon name={method.icon} size={30} /></span>
+            <div>
+              <span class="transport-card__no">方法 {String(index + 1).padStart(2, '0')}</span>
+              <h3>{method.mode}</h3>
+            </div>
+          </div>
+          <p class="transport-card__lead">{method.lead}</p>
+          <ol class="transport-card__steps">
+            {method.steps.map((step, stepIndex) => (
+              <li><span>{stepIndex + 1}</span>{step}</li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

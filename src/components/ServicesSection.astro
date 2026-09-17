@@ -1,0 +1,28 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+---
+
+<section class="section section--cream services-section" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="訪問者向けサービス"
+      title="園内の設備と、周辺の便利情報。"
+      text="トイレや駐車場から、飲食・宿泊・買い物・給油・充電まで。特定の店名は挙げず、ご自身の計画に合わせてご利用ください。"
+    />
+    <div class="services-grid">
+      {content.visitorServices.map((service, index) => (
+        <article class="service-card">
+          <header class="service-card__head">
+            <span class="service-card__index">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{service.title}</h3>
+          </header>
+          <p class="service-card__lead">{service.lead}</p>
+          <ul class="service-card__points">
+            {service.points.map((point) => <li>{point}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

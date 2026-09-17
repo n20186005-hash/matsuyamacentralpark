@@ -1,12 +1,29 @@
-node_modules/
+# Build output
 dist/
-.env
-*.local
-.DS_Store
+# Astro generated types & cache
+.astro/
+# Dependencies
+node_modules/
+# Logs
 *.log
-apps/web/src/routeTree.gen.ts
-releases/
-
-
-.astro
+npm-debug.log*
+pnpm-debug.log*
+# Environment files
+.env
+.env.production
+.env.local
+.env.*.local
+# OS files
+.DS_Store
+Thumbs.db
+# Editor / IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+# Cloudflare
 .wrangler/
+.dev.vars
+.miniflare/
+# Temp / misc
+*.tmp
+.cache/

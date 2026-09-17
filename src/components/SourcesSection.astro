@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+
+const seo = content.seo;
+const review = content.googleReview;
+const domainUrl = `https://${seo.domain}`;
+---
+
+<section class="section section--cream sources-section" id="sources" aria-label="資料と出典">
+  <div class="container">
+    <SectionHeading
+      eyebrow="参照・出典"
+      title="資料來源 / Data & Sources"
+      text="本サイトの評価・住所・統計データの出典を明記し、正確な情報提供に努めます。"
+    />
+
+    <ul class="sources-list">
+      <li class="sources-item">
+        <span class="sources-item__tag">評価</span>
+        <div class="sources-item__body">
+          <p class="sources-item__lead">評価 · 同步时间 {review.syncMonth}</p>
+          <p class="sources-item__note">
+            同步自 Google 地图用户评价，同步时间 {review.syncMonth}；版权归原作者与 Google 地图所有
+          </p>
+          <a class="text-link" href={review.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Google マップで全ての口コミを見る <Icon name="arrow" size={16} />
+          </a>
+        </div>
+      </li>
+
+      <li class="sources-item">
+        <span class="sources-item__tag">公式</span>
+        <div class="sources-item__body">
+          <p class="sources-item__lead">松山中央公園 公式ガイド（本サイト）</p>
+          <a class="text-link" href={domainUrl}>{domainUrl} <Icon name="arrow" size={16} /></a>
+        </div>
+      </li>
+
+      <li class="sources-item">
+        <span class="sources-item__tag">自治体</span>
+        <div class="sources-item__body">
+          <p class="sources-item__lead">{seo.city}市公式サイト（{seo.region}）</p>
+          <a class="text-link" href={seo.govTourismUrl} target="_blank" rel="noopener noreferrer">
+            {seo.govTourismUrl} <Icon name="arrow" size={16} />
+          </a>
+        </div>
+      </li>
+
+      <li class="sources-item">
+        <span class="sources-item__tag">写真</span>
+        <div class="sources-item__body">
+          <p class="sources-item__lead">各写真のクレジットとライセンス</p>
+          <a class="text-link" href="/credits/">写真クレジット一覧 <Icon name="arrow" size={16} /></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

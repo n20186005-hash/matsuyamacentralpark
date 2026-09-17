@@ -1,0 +1,27 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+---
+
+<section class="section section--cream responsibility-section" id="responsibility" aria-labelledby="responsibility-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="科学と、訪問者の責任"
+      title="緑地を守り、すべての人が過ごしやすい公園へ。"
+      text={content.responsibility.intro}
+    />
+    <div class="responsibility-grid">
+      {content.responsibility.principles.map((principle, index) => (
+        <article class="responsibility-card">
+          <span class="responsibility-card__no">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </article>
+      ))}
+    </div>
+    <div class="responsibility-science">
+      <p class="mini-label">この公園が果たす役割</p>
+      <p>{content.responsibility.scienceNote}</p>
+    </div>
+  </div>
+</section>

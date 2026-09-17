@@ -5,9 +5,32 @@ import SectionHeading from '../components/SectionHeading.astro';
 import FacilityCard from '../components/FacilityCard.astro';
 import RoutePlanner from '../components/RoutePlanner.astro';
 import PhotoCredit from '../components/PhotoCredit.astro';
+import ReviewSection from '../components/ReviewSection.astro';
+import SeoEntitySection from '../components/SeoEntitySection.astro';
+import SourcesSection from '../components/SourcesSection.astro';
+import HeritageSection from '../components/HeritageSection.astro';
+import WeatherWidget from '../components/WeatherWidget.astro';
+import TransportSection from '../components/TransportSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import SeasonsSection from '../components/SeasonsSection.astro';
+import ItinerarySection from '../components/ItinerarySection.astro';
+import ResponsibilitySection from '../components/ResponsibilitySection.astro';
 import { content } from '../data/site';
 
 const featuredFacilities = content.facilities.filter((facility) => facility.featured);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer
+    }
+  }))
+};
 ---
 <BaseLayout title={content.site.name} currentPath="/" bodyClass="home-page">
   <section class="home-hero">
@@ -75,6 +98,8 @@ const featuredFacilities = content.facilities.filter((facility) => facility.feat
     </div>
   </section>
 
+  <ReviewSection />
+
   <section class="section section--cream experiences-section">
     <div class="container">
       <SectionHeading
@@ -140,6 +165,8 @@ const featuredFacilities = content.facilities.filter((facility) => facility.feat
     <PhotoCredit label="Carpawa／パブリックドメイン" />
   </section>
 
+  <HeritageSection />
+
   <section class="section section--cream planner-section">
     <div class="container">
       <RoutePlanner />
@@ -171,6 +198,22 @@ const featuredFacilities = content.facilities.filter((facility) => facility.feat
     </div>
   </section>
 
+  <TransportSection />
+
+  <ServicesSection />
+
+  <WeatherWidget />
+
+  <SeasonsSection />
+
+  <ItinerarySection />
+
+  <SeoEntitySection />
+
+  <SourcesSection />
+
+  <ResponsibilitySection />
+
   <section class="section section--cream faq-section">
     <div class="container faq-layout">
       <SectionHeading
@@ -188,4 +231,6 @@ const featuredFacilities = content.facilities.filter((facility) => facility.feat
       </div>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 </BaseLayout>

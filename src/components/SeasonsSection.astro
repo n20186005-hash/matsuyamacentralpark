@@ -1,0 +1,31 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+---
+
+<section class="section section--cream seasons-section" id="seasons" aria-labelledby="seasons-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="季節で選ぶ過ごし方"
+      title="月ごとの気候と、おすすめの動き方。"
+      text="四季それぞれに合わせた持ち物と過ごし方の目安です。ご予定の季節に合わせて、滞在の計画を立てられます。"
+    />
+    <div class="seasons-grid">
+      {content.seasons.map((season) => (
+        <article class="season-card" data-season={season.id}>
+          <header class="season-card__head">
+            <span class="season-card__name">{season.name}</span>
+            <span class="season-card__period">{season.period}</span>
+          </header>
+          <dl class="season-card__body">
+            <div><dt>気候の目安</dt><dd>{season.weather}</dd></div>
+            <div><dt>おすすめ</dt><dd>{season.bestFor}</dd></div>
+            <div><dt>持ち物</dt><dd>{season.bring}</dd></div>
+            <div><dt>自然・生きもの</dt><dd>{season.nature}</dd></div>
+          </dl>
+        </article>
+      ))}
+    </div>
+    <p class="seasons-note">各季節の内容は、瀬戸内海式気候の傾向をもとにした目安です。当日の天候や施設の開館状況は、最新の予報や案内でご確認ください。</p>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { content } from '../data/site';
+
+const seo = content.seo;
+const landmark1 = seo.nearbyLandmarks[0];
+const landmark2 = seo.nearbyLandmarks[1];
+---
+
+<section class="section section--paper seo-entity" aria-label={`${seo.fullName} overview`}>
+  <div class="container seo-entity__inner">
+    <div class="seo-entity__copy">
+      <h2>About {seo.fullName}</h2>
+      <p>
+        Welcome to <strong>{seo.fullName}</strong>, widely recognized as the central
+        <strong>{seo.shortName}</strong>. Located in the heart of <strong>{seo.city}</strong>,
+        <strong>{seo.region}</strong>, <strong>{seo.country}</strong>, this destination serves as a
+        primary hub for travelers visiting the region.
+      </p>
+      <p>
+        {seo.fullName} is a comprehensive sports park built around Botchan Stadium, together with Aqua
+        Palace Matsuyama, the Ehime Budokan, tennis courts, and multipurpose grounds. It brings
+        baseball culture, martial arts, swimming, and community sports together in one place.
+      </p>
+
+      <h2>Location &amp; How to Visit {seo.shortName} in {seo.city}</h2>
+      <p>
+        {seo.fullName} sits at Ichitsubo Nishimachi 625-1, {seo.city}, {seo.region}
+        {seo.postalCode}, about a 5-minute walk from JR Ichitsubo Station. From JR Matsuyama Station
+        it is roughly 10 minutes by train, making rail the simplest way to arrive on event days too.
+      </p>
+      <p class="seo-breadcrumb">{seo.fullName} → {seo.city} → {seo.region} → {seo.country}</p>
+
+      <h2>Landmarks &amp; Attractions Around {seo.shortName}</h2>
+      <p>
+        When visiting <strong>{seo.fullName}</strong>, visitors can easily explore surrounding
+        historical landmarks and points of interest, including <strong>{landmark1}</strong> and
+        <strong>{landmark2}</strong>.
+      </p>
+
+      <h2>History &amp; Significance of {seo.fullName}</h2>
+      <p>
+        The park's baseball story traces back to Masaoka Shiki, who brought the game to Matsuyama in
+        the Meiji era. Botchan Stadium takes its name from Natsume Soseki's novel set in the city and
+        has hosted the professional All-Star Game three times, in 2002, 2012, and 2022. The Ehime
+        Budokan, built with local timber and traditional materials, anchors the park's architectural
+        character.
+      </p>
+    </div>
+
+    <aside class="seo-entity__map">
+      <iframe
+        title={`${seo.fullName} on Google Maps`}
+        src={seo.mapsEmbed}
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      >
+      </iframe>
+      <p class="seo-entity__gov">
+        For official updates and regional tourism information, visit
+        <a href={seo.govTourismUrl} target="_blank" rel="noopener noreferrer">
+          {seo.country} / {seo.region} Official Tourism Portal <Icon name="arrow" size={16} />
+        </a>.
+      </p>
+      <a class="button button--outline" href={seo.mapsUrl} target="_blank" rel="noopener noreferrer">
+        View on Google Maps <Icon name="arrow" size={18} />
+      </a>
+    </aside>
+  </div>
+</section>

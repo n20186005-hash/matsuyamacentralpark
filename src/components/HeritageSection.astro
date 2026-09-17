@@ -1,0 +1,23 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+---
+
+<section class="section section--paper heritage-section" id="heritage" aria-labelledby="heritage-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="公園の背景とまちの歴史"
+      title="一つの球場に、百年以上の物語が集まる。"
+      text="スポーツ施設が並ぶ今の風景の下には、市坪の土地の歴史、野球と文学が交わる松山の文化、そして海を越えたつながりがあります。"
+    />
+    <div class="heritage-grid">
+      {content.heritage.map((item) => (
+        <article class="heritage-card">
+          <p class="heritage-card__eyebrow">{item.eyebrow}</p>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

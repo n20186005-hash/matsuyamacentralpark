@@ -1,0 +1,140 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { content } from '../data/site';
+
+const lat = content.seo.latitude;
+const lon = content.seo.longitude;
+---
+
+<section class="section section--paper weather-section" id="weather" aria-labelledby="weather-title">
+  <div class="container">
+    <SectionHeading
+      eyebrow="今の空と、数日先"
+      title="松山中央公園の天気"
+      text="訪問の前に、今日の空模様と数日先の目安を確認できます。傘がいるかどうか、ひと目でわかります。"
+    />
+    <div class="weather-card" data-weather data-lat={lat} data-lon={lon}>
+      <div class="weather-now" data-weather-now>
+        <p class="weather-loading">天気を読み込み中…</p>
+      </div>
+      <div class="weather-forecast" data-weather-forecast aria-label="数日先の予報"></div>
+    </div>
+    <p class="weather-note">予報は観測データに基づく推定値です。お出かけ前に最新の情報をご確認ください。</p>
+  </div>
+</section>
+
+<script>
+  const WMO = (code) => {
+    if (code === 0) return { t: '晴れ', c: 'clear' };
+    if (code === 1) return { t: '大体晴れ', c: 'clear' };
+    if (code === 2) return { t: '晴時々曇', c: 'partly' };
+    if (code === 3) return { t: '曇り', c: 'cloudy' };
+    if (code === 45 || code === 48) return { t: '霧', c: 'fog' };
+    if ((code >= 51 && code <= 57) || (code >= 80 && code <= 82)) return { t: '小雨', c: 'rain' };
+    if (code >= 61 && code <= 67) return { t: '雨', c: 'rain' };
+    if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return { t: '雪', c: 'snow' };
+    if (code >= 95) return { t: '雷雨', c: 'thunder' };
+    return { t: 'くもり', c: 'cloudy' };
+  };
+
+  const SVG = (c) => {
+    const open = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+    const cloud = '<path d="M7 18h9a4 4 0 0 0 .6-7.96A5.5 5.5 0 0 0 6.5 9 4.5 4.5 0 0 0 7 18z"/>';
+    const map = {
+      clear: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/>',
+      partly: '<circle cx="8.5" cy="8.5" r="3.2"/><path d="M8.5 2.8v1.6M3.7 8.5H2.1M4.4 4.4l1.1 1.1"/><path d="M9.5 19h6.5a3.6 3.6 0 0 0 .6-7.15A5 5 0 0 0 9 11.2 3.8 3.8 0 0 0 9.5 19z"/>',
+      cloudy: cloud,
+      fog: cloud + '<path d="M5 20h11M7 22h9"/>',
+      rain: cloud + '<path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/>',
+      snow: cloud + '<circle cx="9" cy="20.5" r="0.9"/><circle cx="13" cy="21" r="0.9"/><circle cx="17" cy="20.5" r="0.9"/>',
+      thunder: cloud + '<path d="M12 19l-2 3h3l-2 3"/>'
+    };
+    return open + (map[c] || map.cloud) + '</svg>';
+  };
+
+  const fmtDay = (iso, i) => {
+    if (i === 0) return '今日';
+    if (i === 1) return '明日';
+    const d = new Date(iso + 'T00:00');
+    const wd = ['日', '月', '火', '水', '木', '金', '土'][d.getDay()];
+    return `${d.getMonth() + 1}/${d.getDate()}(${wd})`;
+  };
+
+  const render = (root, data) => {
+    const cur = data.current;
+    const info = WMO(cur.weather_code);
+    const now = root.querySelector('[data-weather-now]');
+    now.innerHTML = `
+      <div class="weather-now__main">
+        <span class="weather-now__glyph">${SVG(info.c)}</span>
+        <div class="weather-now__temp">${Math.round(cur.temperature_2m)}<span>°C</span></div>
+      </div>
+      <div class="weather-now__meta">
+        <p class="weather-now__label">${info.t}</p>
+        <dl class="weather-now__stats">
+          <div><dt>体感</dt><dd>${Math.round(cur.apparent_temperature)}°</dd></div>
+          <div><dt>湿度</dt><dd>${Math.round(cur.relative_humidity_2m)}%</dd></div>
+          <div><dt>風速</dt><dd>${Math.round(cur.wind_speed_10m)} km/h</dd></div>
+        </dl>
+      </div>`;
+
+    const fc = root.querySelector('[data-weather-forecast]');
+    const d = data.daily;
+    fc.innerHTML = d.time
+      .map((iso, i) => {
+        const fi = WMO(d.weather_code[i]);
+        const pop = d.precipitation_probability_max[i];
+        return `<article class="weather-day">
+          <span class="weather-day__name">${fmtDay(iso, i)}</span>
+          <span class="weather-day__glyph">${SVG(fi.c)}</span>
+          <span class="weather-day__label">${fi.t}</span>
+          <span class="weather-day__temp">${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°</span>
+          <span class="weather-day__pop" title="降水確率">${pop != null ? pop + '%' : '—'}</span>
+        </article>`;
+      })
+      .join('');
+  };
+
+  const showError = (root) => {
+    root.querySelector('[data-weather-now]').innerHTML =
+      '<p class="weather-error">現在、天気を取得できませんでした。しばらくしてから再度お試しください。</p>';
+  };
+
+  const load = async (root) => {
+    const lat = root.dataset.lat;
+    const lon = root.dataset.lon;
+    const url =
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m` +
+      `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
+      `&timezone=Asia%2FTokyo&forecast_days=7`;
+    const CACHE = 'mcp-weather-v1';
+    const TS_KEY = 'mcp-weather-ts';
+    try {
+      const ts = Number(localStorage.getItem(TS_KEY) || 0);
+      if (Date.now() - ts < 30 * 60 * 1000) {
+        const cache = await caches.open(CACHE);
+        const hit = await cache.match(url);
+        if (hit) {
+          render(root, await hit.json());
+          return;
+        }
+      }
+    } catch (_) {}
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      render(root, data);
+      try {
+        const cache = await caches.open(CACHE);
+        await cache.put(url, new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }));
+        localStorage.setItem(TS_KEY, String(Date.now()));
+      } catch (_) {}
+    } catch (_) {
+      showError(root);
+    }
+  };
+
+  document.querySelectorAll('[data-weather]').forEach((el) => load(el));
+</script>

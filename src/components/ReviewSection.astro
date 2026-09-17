@@ -1,0 +1,52 @@
+---
+import Icon from './Icon.astro';
+import { content } from '../data/site';
+
+const review = content.googleReview;
+const fullStars = Math.floor(review.rating);
+const hasHalf = review.rating % 1 >= 0.5;
+const stars = Array.from({ length: 5 }, (_, i) => {
+  if (i < fullStars) return 'full';
+  if (i === fullStars && hasHalf) return 'half';
+  return 'empty';
+});
+const reviewCountText = review.reviewCount.toLocaleString('en-US');
+---
+
+<section class="section section--paper reviews-section" id="reviews" aria-label="Google マップの評価・口コミ">
+  <div class="container">
+    <div class="section-heading reviews-section__heading">
+      <p class="section-heading__eyebrow">評価・口コミ</p>
+      <h2>Google マップの評価</h2>
+      <p class="section-heading__text">訪れた方々の評価を、出典を明記してお伝えします。</p>
+    </div>
+
+    <div class="reviews-card">
+      <div class="reviews-card__brand">
+        <span class="reviews-card__g">G</span>
+        <span class="reviews-card__brand-text">Google マップ</span>
+      </div>
+
+      <div class="reviews-rating">
+        <span class="reviews-rating__score">{review.rating.toFixed(1)}</span>
+        <span class="reviews-rating__stars" aria-hidden="true">
+          {stars.map((s) => <span class:list={['star', `star--${s}`]}>★</span>)}
+        </span>
+        <span class="reviews-rating__count">（{reviewCountText} 件の評価）</span>
+      </div>
+
+      <p class="reviews-sync">
+        评分与评价数同步自谷歌地图（Google Maps）用户评价 · {review.syncMonth} ·
+        <a href={review.mapsUrl} target="_blank" rel="noopener noreferrer">点击查看谷歌地图全部评价↗</a>
+      </p>
+
+      <p class="reviews-copyright">
+        同步自 Google 地图用户评价，同步时间 {review.syncMonth}；版权归原作者与 Google 地图所有
+      </p>
+
+      <a class="button button--blue reviews-card__cta" href={review.mapsUrl} target="_blank" rel="noopener noreferrer">
+        在谷歌地图查看全部评价 <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </div>
+</section>

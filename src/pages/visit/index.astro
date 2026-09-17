@@ -6,6 +6,10 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import RoutePlanner from '../../components/RoutePlanner.astro';
 import RouteCard from '../../components/RouteCard.astro';
 import PhotoCredit from '../../components/PhotoCredit.astro';
+import WeatherWidget from '../../components/WeatherWidget.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import SeasonsSection from '../../components/SeasonsSection.astro';
+import ItinerarySection from '../../components/ItinerarySection.astro';
 import { content } from '../../data/site';
 ---
 <BaseLayout
@@ -109,6 +113,14 @@ import { content } from '../../data/site';
       </figure>
     </div>
   </section>
+
+  <WeatherWidget />
+
+  <ServicesSection />
+
+  <SeasonsSection />
+
+  <ItinerarySection />
 
   <section class="cta-band cta-band--blue">
     <div class="container cta-band__inner">

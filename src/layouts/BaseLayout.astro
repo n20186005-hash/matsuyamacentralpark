@@ -21,26 +21,34 @@ const {
 } = Astro.props;
 const pageTitle = title === content.site.name ? title : `${title}｜${content.site.name}`;
 const analyticsId = import.meta.env.PUBLIC_GA_ID as string | undefined;
+const siteUrl = `https://${content.seo.domain}`;
+const canonicalUrl = `${siteUrl}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'SportsActivityLocation'],
-  name: content.site.name,
-  description,
-  image,
+  '@id': `${siteUrl}/#attraction`,
+  name: content.seo.fullName,
+  alternateName: [content.site.name, `${content.seo.fullName} (${content.seo.city})`, content.seo.shortName],
+  description: `Comprehensive visitor guide to ${content.seo.fullName} in ${content.seo.city}, ${content.seo.region}, ${content.seo.country}.`,
+  url: siteUrl,
+  image: [`${siteUrl}/images/og.jpg`],
+  isAccessibleForFree: true,
   telephone: content.site.phone,
   address: {
     '@type': 'PostalAddress',
-    postalCode: '790-0948',
-    addressRegion: '愛媛県',
-    addressLocality: '松山市',
-    streetAddress: '市坪西町625番地1',
-    addressCountry: 'JP'
+    streetAddress: 'Ichitsubo Nishimachi 625-1',
+    addressLocality: content.seo.city,
+    addressRegion: content.seo.region,
+    postalCode: content.seo.postalCode,
+    addressCountry: content.seo.countryCode
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: content.site.latitude,
-    longitude: content.site.longitude
+    latitude: content.seo.latitude,
+    longitude: content.seo.longitude
   },
+  hasMap: content.seo.mapsUrl,
+  sameAs: [content.seo.mapsUrl, content.seo.govTourismUrl],
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: '野球場', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'プール', value: true },
@@ -55,13 +63,16 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#123a63" />
     <meta name="color-scheme" content="light" />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={`${content.seo.fullName} in ${content.seo.city}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
@@ -146,5 +157,12 @@ const structuredData = {
       <a class:list={{ 'is-active': currentPath.startsWith('/access/') }} href="/access/"><Icon name="map-pin" size={20} /><span>行き方</span></a>
     </nav>
     <script src="/scripts/site.js" defer></script>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
