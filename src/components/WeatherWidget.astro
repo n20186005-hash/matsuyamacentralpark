@@ -1,306 +1,310 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { content } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
-const site = content.site;
-const lat = site.latitude;
-const lon = site.longitude;
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
+
+const ja = {
+  weekday: ['日', '月', '火', '水', '木', '金', '土'],
+  today: '今日', tomorrow: '明日', fallback: 'くもり',
+  code: {
+    '0': { day: '晴れ', night: '晴れ（夜）' }, '1': { day: '大体晴れ', night: '星空' },
+    '2': { day: '薄曇り' }, '3': { day: '曇り' },
+    '45': { day: '霧' }, '48': { day: '霧' },
+    '51': { day: '霧雨' }, '53': { day: '霧雨' }, '55': { day: '霧雨' }, '57': { day: '霧雨' },
+    '61': { day: '小雨' }, '63': { day: '雨' }, '65': { day: '強い雨' },
+    '71': { day: '雪' }, '73': { day: '雪' }, '75': { day: '雪' }, '77': { day: '雪' },
+    '80': { day: '小雨' }, '81': { day: '雨' }, '82': { day: '強い雨' },
+    '85': { day: '雪' }, '86': { day: '雪' },
+    '95': { day: '雷を伴う雨' }, 'default': { day: 'くもり' }
+  },
+  now: { precip: '降水確率', wind: '風', humidity: '湿度', feels: '体感' },
+  cols: { outfit: '服装', activities: '過ごし方', items: '持ち物' },
+  msg: {
+    rainOutfit: 'ぬれても良い靴や服装だと安心です。',
+    rainItems: '折りたたみ傘。',
+    rainActivities: '屋外はぬれやすいので、軒下や屋内への移動を考えましょう。',
+    popItems: '折りたたみ傘またはレインウェア。',
+    popActivities: '雨の可能性が高い日。屋内施設を優先すると安心です。',
+    hotOutfit: '気温が高めです。軽く通気性の良い服装で、正午の外出は控えめに。',
+    hotActivities: '屋外の時間は短めに。こまめな休憩を。',
+    hotItems: '飲み物を多めに、暑さ対策グッズ。',
+    coldOutfit: '気温が低めです。厚手のコートやマフラーで防寒を。',
+    coldItems: '厚手のコート、マフラー。',
+    diffOutfit: '朝晩の寒暖差が大きいので、羽織れる上着があると安心。',
+    uvItems: '日焼け止め、サングラス、帽子。',
+    clearOutfit: '晴れの日。日除け対策を忘れずに。',
+    clearActivities: '屋外散策に良い日。朝や夕方の散歩が気持ちいいです。',
+    cloudyOutfit: '曇りの日。長時間外を歩いても疲れにくい日です。',
+    cloudyActivities: '柔和な光で、建築の写真撮影にも適しています。',
+    windActivities: '風がやや強いので、海や屋外の乗り物は運休の可能性があります。',
+    windItems: '帽子は飛ばされやすいので、留め具付きが安心。',
+    gustItems: '帽子は飛ばされやすいので、留め具付きが安心。',
+    thunderRisk: '雷に注意。山や海辺、木の下での雨宿りは避けてください。水上の催しは中止になりやすいです。',
+    heavyRisk: '雨が強い日。低い土地や排水の悪い場所は避け、遊覧船や屋外施設は運休の可能性があります。',
+    gustRisk: '強風の日。看板や海辺の岩場から離れましょう。海上の屋外催しは中止になりやすいです。',
+    fogRisk: '視界が悪い日。船や便の遅れに注意し、見晴らしの良い場所への移動は控えめに。',
+    defaultOutfit: '過ごしやすい気温です。動きやすい服装で。',
+    defaultActivities: 'のんびり散策を楽しめます。',
+    defaultItems: '飲み物を忘れずに。'
+  }
+};
+const zhHant = {
+  weekday: ['日', '一', '二', '三', '四', '五', '六'],
+  today: '今天', tomorrow: '明天', fallback: '多雲',
+  code: {
+    '0': { day: '晴', night: '晴（夜）' }, '1': { day: '大致晴朗', night: '星空' },
+    '2': { day: '稀疏雲' }, '3': { day: '多雲' },
+    '45': { day: '霧' }, '48': { day: '霧' },
+    '51': { day: '毛毛雨' }, '53': { day: '毛毛雨' }, '55': { day: '毛毛雨' }, '57': { day: '毛毛雨' },
+    '61': { day: '小雨' }, '63': { day: '雨' }, '65': { day: '大雨' },
+    '71': { day: '雪' }, '73': { day: '雪' }, '75': { day: '雪' }, '77': { day: '雪' },
+    '80': { day: '小雨' }, '81': { day: '雨' }, '82': { day: '大雨' },
+    '85': { day: '雪' }, '86': { day: '雪' },
+    '95': { day: '雷雨' }, 'default': { day: '多雲' }
+  },
+  now: { precip: '降雨機率', wind: '風', humidity: '濕度', feels: '體感' },
+  cols: { outfit: '服裝', activities: '遊玩方式', items: '攜帶物品' },
+  msg: {
+    rainOutfit: '穿不怕弄濕的鞋與衣物比較安心。',
+    rainItems: '摺疊傘。',
+    rainActivities: '戶外容易淋濕，盡量移到屋簷下或室內。',
+    popItems: '摺疊傘或雨衣。',
+    popActivities: '降雨機率高的日子，優先安排室內設施較安心。',
+    hotOutfit: '氣溫偏高。輕便透氣的衣物，正午儘量減少外出。',
+    hotActivities: '戶外時間縮短，多休息。',
+    hotItems: '多帶飲料與防暑用品。',
+    coldOutfit: '氣溫偏低。厚外套與圍巾保暖。',
+    coldItems: '厚外套、圍巾。',
+    diffOutfit: '早晚溫差大，帶一件可穿脫的外套較安心。',
+    uvItems: '防曬乳、太陽眼鏡、帽子。',
+    clearOutfit: '晴天。別忘了防曬。',
+    clearActivities: '適合戶外散步，清晨與傍晚最舒服。',
+    cloudyOutfit: '多雲。長時間在戶外走也不易累。',
+    cloudyActivities: '柔和光線也適合拍攝建築。',
+    windActivities: '風稍強，海上與戶外設施可能停駛。',
+    windItems: '帽子容易被吹走，選有固定帶的較安心。',
+    gustItems: '帽子容易被吹走，選有固定帶的較安心。',
+    thunderRisk: '注意雷擊。避免在樹下或海邊躲雨；水上活動容易取消。',
+    heavyRisk: '雨勢強。避開低窪與排水不良處；遊覽船與戶外設施可能停駛。',
+    gustRisk: '強風。遠離招牌與海邊岩場；海上戶外活動容易取消。',
+    fogRisk: '視野不佳。注意船班與交通延誤，減少前往開闊觀景處。',
+    defaultOutfit: '氣溫舒適，穿好活動的衣物即可。',
+    defaultActivities: '可以悠閒散步。',
+    defaultItems: '別忘了飲料。'
+  }
+};
+const en = {
+  weekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  today: 'Today', tomorrow: 'Tomorrow', fallback: 'Cloudy',
+  code: {
+    '0': { day: 'Clear', night: 'Clear (night)' }, '1': { day: 'Mainly clear', night: 'Starry sky' },
+    '2': { day: 'Partly cloudy' }, '3': { day: 'Overcast' },
+    '45': { day: 'Fog' }, '48': { day: 'Fog' },
+    '51': { day: 'Drizzle' }, '53': { day: 'Drizzle' }, '55': { day: 'Drizzle' }, '57': { day: 'Drizzle' },
+    '61': { day: 'Light rain' }, '63': { day: 'Rain' }, '65': { day: 'Heavy rain' },
+    '71': { day: 'Snow' }, '73': { day: 'Snow' }, '75': { day: 'Snow' }, '77': { day: 'Snow' },
+    '80': { day: 'Light rain' }, '81': { day: 'Rain' }, '82': { day: 'Heavy rain' },
+    '85': { day: 'Snow' }, '86': { day: 'Snow' },
+    '95': { day: 'Thunderstorm' }, 'default': { day: 'Cloudy' }
+  },
+  now: { precip: 'Precipitation', wind: 'Wind', humidity: 'Humidity', feels: 'Feels like' },
+  cols: { outfit: 'Clothing', activities: 'Things to do', items: 'What to bring' },
+  msg: {
+    rainOutfit: 'Shoes and clothes you don’t mind getting wet keep you comfortable.',
+    rainItems: 'A folding umbrella.',
+    rainActivities: 'Outdoors can get wet, so plan moves under eaves or indoors.',
+    popItems: 'A folding umbrella or rainwear.',
+    popActivities: 'Rain is likely — prioritize indoor facilities for peace of mind.',
+    hotOutfit: 'Temperatures run high. Light, breathable clothing; limit midday outings.',
+    hotActivities: 'Keep outdoor time short and rest often.',
+    hotItems: 'Plenty of drinks and heat-countermeasures.',
+    coldOutfit: 'It’s cold — bring a thick coat and scarf.',
+    coldItems: 'Thick coat and scarf.',
+    diffOutfit: 'Big day-night temperature swings; a layer you can shed helps.',
+    uvItems: 'Sunscreen, sunglasses, and a hat.',
+    clearOutfit: 'A clear day — don’t forget sun protection.',
+    clearActivities: 'Great for outdoor walks; mornings and evenings feel nice.',
+    cloudyOutfit: 'Cloudy — easy to walk outside for long stretches.',
+    cloudyActivities: 'Soft light is also good for architectural photos.',
+    windActivities: 'Breezy; boats and outdoor rides may suspend.',
+    windItems: 'Hats blow away easily — use one with a strap.',
+    gustItems: 'Hats blow away easily — use one with a strap.',
+    thunderRisk: 'Watch for lightning. Avoid sheltering under trees or by the sea; water events often cancel.',
+    heavyRisk: 'Heavy rain — avoid low or poorly drained ground; cruises and outdoor facilities may close.',
+    gustRisk: 'Strong winds — keep away from signs and coastal rocks; offshore events often cancel.',
+    fogRisk: 'Poor visibility — expect boat and transit delays; skip trips to open lookouts.',
+    defaultOutfit: 'Comfortable temperatures; wear something easy to move in.',
+    defaultActivities: 'A relaxed stroll is enjoyable.',
+    defaultItems: 'Don’t forget a drink.'
+  }
+};
+const WX = locale === 'zh-Hant' ? zhHant : locale === 'en' ? en : ja;
 ---
-
-<section class="section section--paper weather-section" id="weather" aria-labelledby="weather-title">
+<section class="section section--blue weather-section" id="weather" aria-labelledby="weather-title">
   <div class="container">
-    <SectionHeading
-      eyebrow="今の空と、これから"
-      title="松山中央公園の天気"
-      text="訪問前の目安に。気象の目安をもとに、その日の過ごし方をご提案します。"
-    />
-
-    <div class="weather-card" data-weather data-lat={lat} data-lon={lon}>
-      <div class="weather-now">
-        <p class="weather-loading">天気を読み込み中…</p>
-      </div>
-      <div class="weather-forecast-wrap">
-        <p class="weather-forecast-label">7日間の目安</p>
-        <div class="weather-forecast" aria-hidden="true"></div>
-      </div>
-    </div>
-
-    <div class="weather-advice" data-weather-advice hidden>
-      <div class="weather-risk" data-weather-risk hidden aria-live="polite"></div>
-      <div class="weather-advice__grid">
-        <div class="weather-advice__col" data-col="outfit">
-          <h4>服装</h4>
-          <ul></ul>
-        </div>
-        <div class="weather-advice__col" data-col="activities">
-          <h4>過ごし方</h4>
-          <ul></ul>
-        </div>
-        <div class="weather-advice__col" data-col="items">
-          <h4>持ち物</h4>
-          <ul></ul>
-        </div>
-      </div>
-    </div>
-
-    <p class="weather-note">気象の目安は観測データにもとづく推定値です。最新の情報は公式の気象発表でご確認ください。</p>
-  </div>
-</section>
-
-<script>
-  const root = document.querySelector('[data-weather]');
-  if (root) initWeather(root);
-
-  function initWeather(root) {
-    const lat = root.dataset.lat;
-    const lon = root.dataset.lon;
-    const nowEl = root.querySelector('.weather-now');
-    const fcEl = root.querySelector('.weather-forecast');
-    const section = root.closest('.weather-section');
-    const adviceEl = section.querySelector('[data-weather-advice]');
-    const riskEl = section.querySelector('[data-weather-risk]');
-    const CACHE_KEY = `wx:${lat},${lon}`;
-    const TTL = 30 * 60 * 1000;
-
-    const ICON = {
-      clear: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
-      clearNight: '<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
-      partly: '<circle cx="8" cy="8" r="3"/><path d="M8 2.5v1.5M2.5 8H4M14 3.5l-1 1M5 5l-1 1"/><path d="M8 19a4 4 0 0 1 .3-7.97 5 5 0 0 1 9.7 1.47A3 3 0 0 1 17.5 19z"/>',
-      cloudy: '<path d="M7 18a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 18z"/>',
-      fog: '<path d="M7 13a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 13z"/><path d="M5 17h11M7 20h9"/>',
-      drizzle: '<path d="M7 14a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 14z"/><path d="M8 18l-1 2M12 18l-1 2M16 18l-1 2"/>',
-      rain: '<path d="M7 13a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 13z"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/>',
-      heavy: '<path d="M7 12a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 12z"/><path d="M7 16l-1 4M11 16l-1 4M15 16l-1 4M19 16l-1 4"/>',
-      snow: '<path d="M7 14a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 14z"/><path d="M9 19l-1 1M12 18v2M15 19l1 1M10 21h4"/>',
-      thunder: '<path d="M7 13a4 4 0 0 1 .5-7.97 5.5 5.5 0 0 1 10.5 1.5A3.5 3.5 0 0 1 17 13z"/><path d="M12 13l-2 4h3l-2 4"/>'
-    };
-
-    function svg(inner) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
-    }
-
-    function describe(code, isDay) {
-      if (code === 0) return isDay ? ['clear', '晴れ'] : ['clearNight', '晴れ（夜）'];
-      if (code === 1) return isDay ? ['partly', '大体晴れ'] : ['partly', '星空'];
-      if (code === 2) return ['partly', '薄曇り'];
-      if (code === 3) return ['cloudy', '曇り'];
-      if (code === 45 || code === 48) return ['fog', '霧'];
-      if (code >= 51 && code <= 57) return ['drizzle', '霧雨'];
-      if (code === 61 || code === 80) return ['rain', '小雨'];
-      if (code === 63 || code === 81) return ['rain', '雨'];
-      if (code === 65 || code === 82) return ['heavy', '強い雨'];
-      if (code >= 71 && code <= 77) return ['snow', '雪'];
-      if (code === 85 || code === 86) return ['snow', '雪'];
-      if (code >= 95) return ['thunder', '雷を伴う雨'];
-      return ['cloudy', 'くもり'];
-    }
-
-    function beaufort(ms) {
-      if (ms < 0.3) return 0;
-      if (ms < 1.6) return 1;
-      if (ms < 3.4) return 2;
-      if (ms < 5.5) return 3;
-      if (ms < 8.0) return 4;
-      if (ms < 10.8) return 5;
-      if (ms < 13.9) return 6;
-      if (ms < 17.2) return 7;
-      if (ms < 20.8) return 8;
-      if (ms < 24.5) return 9;
-      if (ms < 28.5) return 10;
-      if (ms < 32.7) return 11;
-      return 12;
-    }
-
-    function buildAdvice(daily) {
-      const code = daily.weather_code[0];
-      const tMax = daily.temperature_2m_max[0];
-      const tMin = daily.temperature_2m_min[0];
-      const pop = (daily.precipitation_probability_max && daily.precipitation_probability_max[0]) || 0;
-      const uv = (daily.uv_index_max && daily.uv_index_max[0]) || 0;
-      const windMax = (daily.wind_speed_10m_max && daily.wind_speed_10m_max[0]) || 0;
-      const gusts = (daily.wind_gusts_10m_max && daily.wind_gusts_10m_max[0]) || 0;
-
-      const isRain = (code >= 51 && code <= 67) || (code >= 80 && code <= 82);
-      const isHeavy = code === 65 || code === 82;
-      const isThunder = code >= 95;
-      const isFog = code === 45 || code === 48;
-      const isClear = code === 0 || code === 1;
-      const isCloudy = code === 2 || code === 3;
-      const diff = tMax - tMin;
-      const windLvl = beaufort(windMax);
-      const gustLvl = beaufort(gusts);
-
-      const outfit = [];
-      const activities = [];
-      const items = [];
-      const risks = [];
-
-      if (isHeavy) {
-        outfit.push('雨が強めです。撥水加工のコートがあると便利です。');
-        items.push('レインウェア（長い傘は風で逆さになりやすいので避けて）。');
-        activities.push('屋外でのんびりはむずかしい日。屋内施設や資料館を優先すると安心です。');
-      } else if (isRain) {
-        outfit.push('ぬれても良い靴や服装だと安心です。');
-        items.push('折りたたみ傘。');
-        activities.push('屋外はぬれやすいので、軒下や屋内への移動を考えましょう。');
-      }
-      if (pop >= 60 && !isHeavy) {
-        items.push('折りたたみ傘またはレインウェア。');
-        activities.push('雨の可能性が高い日。屋内施設を優先すると安心です。');
-      }
-      if (tMax >= 32) {
-        outfit.push('気温が高めです。軽く通気性の良い服装で、正午の外出は控えめに。');
-        activities.push('屋外の時間は短めに。こまめな休憩を。');
-        items.push('飲み物を多めに、暑さ対策グッズ。');
-      }
-      if (tMax <= 10) {
-        outfit.push('気温が低めです。厚手のコートやマフラーで防寒を。');
-        items.push('厚手のコート、マフラー。');
-      }
-      if (diff > 8 && tMax > 10 && tMax < 32) {
-        outfit.push('朝晩の寒暖差が大きいので、羽織れる上着があると安心。');
-      }
-      if (uv >= 5) {
-        items.push('日焼け止め、サングラス、帽子。');
-      }
-      if (isClear && tMax < 32) {
-        outfit.push('晴れの日。日除け対策を忘れずに。');
-        activities.push('屋外散策に良い日。朝や夕方の散歩が気持ちいいです。');
-      }
-      if (isCloudy) {
-        outfit.push('曇りの日。長時間外を歩いても疲れにくい日です。');
-        activities.push('柔和な光で、建築の写真撮影にも適しています。');
-      }
-      if (isFog) {
-        activities.push('視界が悪い日。遠景より近場の散策を楽しみましょう。');
-      }
-      if (windLvl >= 5 && windLvl < 7) {
-        activities.push('風がやや強いので、海や屋外の乗り物は運休の可能性があります。');
-        items.push('帽子は飛ばされやすいので、留め具付きが安心。');
-      }
-      if (gustLvl >= 7) {
-        items.push('帽子は飛ばされやすいので、留め具付きが安心。');
-      }
-
-      if (isThunder) {
-        risks.push('雷に注意。山や海辺、木の下での雨宿りは避けてください。水上の催しは中止になりやすいです。');
-      }
-      if (isHeavy) {
-        risks.push('雨が強い日。低い土地や排水の悪い場所は避け、遊覧船や屋外施設は運休の可能性があります。');
-      }
-      if (gustLvl >= 7) {
-        risks.push('強風の日。看板や海辺の岩場から離れましょう。海上の屋外催しは中止になりやすいです。');
-      }
-      if (isFog) {
-        risks.push('視界が悪い日。船や便の遅れに注意し、見晴らしの良い場所への移動は控えめに。');
-      }
-
-      if (!outfit.length) outfit.push('過ごしやすい気温です。動きやすい服装で。');
-      if (!activities.length) activities.push('のんびり散策を楽しめます。');
-      if (!items.length) items.push('飲み物を忘れずに。');
-
-      return { outfit, activities, items, risks };
-    }
-
-    function renderNow(cur, daily) {
-      const [key, label] = describe(cur.weather_code, cur.is_day === 1);
-      const pop = (daily.precipitation_probability_max && daily.precipitation_probability_max[0]) || 0;
-      const windLvl = beaufort(cur.wind_speed_10m);
-      nowEl.innerHTML = `
+    <SectionHeading eyebrow={t('weather.eyebrow')} title={t('weather.sectionLabel')} text={t('weather.lead')} />
+    <p class="weather-note">{t('weather.note')}</p>
+    <div class="weather-grid" data-weather>
+      <div class="weather-card weather-card--now" data-weather-now>
+        <p class="weather-card__label">{t('weather.today')}</p>
         <div class="weather-now__main">
-          <span class="weather-now__glyph">${svg(ICON[key])}</span>
+          <span class="weather-now__icon" data-weather-icon="now" aria-hidden="true"></span>
           <div>
-            <p class="weather-now__temp">${Math.round(cur.temperature_2m)}<span>℃</span></p>
-            <p class="weather-now__label">${label}</p>
+            <span class="weather-now__temp" data-weather-temp="now">--°</span>
+            <span class="weather-now__desc" data-weather-desc="now">—</span>
           </div>
         </div>
         <dl class="weather-now__stats">
-          <div><dt>降水確率</dt><dd>${pop}%</dd></div>
-          <div><dt>風</dt><dd>${cur.wind_speed_10m.toFixed(1)}m/s（${windLvl}級）</dd></div>
-          <div><dt>湿度</dt><dd>${cur.relative_humidity_2m}%</dd></div>
-          <div><dt>体感</dt><dd>${Math.round(cur.apparent_temperature)}℃</dd></div>
-        </dl>`;
-    }
-
-    function renderForecast(daily) {
-      const wd = ['日', '月', '火', '水', '木', '金', '土'];
-      let html = '';
-      for (let i = 0; i < daily.time.length; i++) {
-        const [k, l] = describe(daily.weather_code[i], true);
-        const d = new Date(daily.time[i] + 'T00:00');
-        const name = i === 0 ? '今日' : i === 1 ? '明日' : wd[d.getDay()];
-        const pop = (daily.precipitation_probability_max && daily.precipitation_probability_max[i]) || 0;
-        html += `<div class="weather-day">
-          <span class="weather-day__name">${name}</span>
-          <span class="weather-day__glyph">${svg(ICON[k])}</span>
-          <span class="weather-day__label">${l}</span>
-          <span class="weather-day__temp">${Math.round(daily.temperature_2m_max[i])}° / ${Math.round(daily.temperature_2m_min[i])}°</span>
-          ${pop >= 30 ? `<span class="weather-day__pop">雨 ${pop}%</span>` : ''}
-        </div>`;
+          <div><dt>{t('weather.now.precip')}</dt><dd data-weather-precip="now">--%</dd></div>
+          <div><dt>{t('weather.now.wind')}</dt><dd data-weather-wind="now">-- m/s</dd></div>
+          <div><dt>{t('weather.now.humidity')}</dt><dd data-weather-humidity="now">--%</dd></div>
+          <div><dt>{t('weather.now.feels')}</dt><dd data-weather-feels="now">--°</dd></div>
+        </dl>
+      </div>
+      <div class="weather-card weather-card--forecast" data-weather-forecast>
+        <p class="weather-card__label">{t('weather.forecastLabel')}</p>
+        <div class="weather-forecast__list" data-weather-forecast-list>
+          <p class="weather-loading">{t('weather.loading')}</p>
+        </div>
+      </div>
+      <div class="weather-card weather-card--advice" data-weather-advice>
+        <p class="weather-card__label">{t('weather.tomorrow')}</p>
+        <div class="weather-advice__cols">
+          <div class="weather-advice__col">
+            <p class="weather-advice__col-title">{t('weather.outfit')}</p>
+            <ul data-weather-col="outfit"><li class="weather-loading">{t('weather.loading')}</li></ul>
+          </div>
+          <div class="weather-advice__col">
+            <p class="weather-advice__col-title">{t('weather.activities')}</p>
+            <ul data-weather-col="activities"><li class="weather-loading">{t('weather.loading')}</li></ul>
+          </div>
+          <div class="weather-advice__col">
+            <p class="weather-advice__col-title">{t('weather.items')}</p>
+            <ul data-weather-col="items"><li class="weather-loading">{t('weather.loading')}</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" data-wx set:html={JSON.stringify(WX)}></script>
+  <script>
+    (function () {
+      var root = document.querySelector('[data-weather]');
+      if (!root) return;
+      var WX = JSON.parse(document.querySelector('[data-wx]').textContent);
+      var LAT = 33.8416, LON = 132.9356;
+      var ICONS = {
+        clear: '☀️', clearNight: '🌙', partly: '🌤️', cloudy: '☁️', fog: '🌫️',
+        drizzle: '🌦️', rain: '🌧️', heavy: '⛈️', snow: '❄️', thunder: '🌩️'
+      };
+      function describe(code, isDay) {
+        var entry = WX.code[String(code)] || WX.code['default'];
+        var label = isDay ? entry.day : (entry.night || entry.day);
+        var icon = 'cloudy';
+        if (code === 0) icon = isDay ? 'clear' : 'clearNight';
+        else if (code === 1) icon = 'partly';
+        else if (code === 2) icon = 'partly';
+        else if (code === 3) icon = 'cloudy';
+        else if (code === 45 || code === 48) icon = 'fog';
+        else if (code >= 51 && code <= 57) icon = 'drizzle';
+        else if ((code >= 61 && code <= 65) || (code >= 80 && code <= 82)) icon = (code === 65 || code === 82) ? 'heavy' : 'rain';
+        else if (code >= 71 && code <= 77) icon = 'snow';
+        else if (code === 85 || code === 86) icon = 'snow';
+        else if (code >= 95) icon = 'thunder';
+        return [icon, label];
       }
-      fcEl.innerHTML = html;
-    }
-
-    function renderAdvice(a) {
-      if (a.risks.length) {
-        riskEl.innerHTML = a.risks.map((r) => `<p>${r}</p>`).join('');
-        riskEl.hidden = false;
-      } else {
-        riskEl.hidden = true;
+      function buildAdvice(current, day, hourly) {
+        var advice = [], M = WX.msg, add = function (k) { if (M[k]) advice.push(M[k]); };
+        if (current.precip > 0) { add('rainOutfit'); add('rainItems'); add('rainActivities'); }
+        if (day.precipProbability >= 40) { add('popItems'); add('popActivities'); }
+        if (current.temperature2mMax >= 30 || hourly.some(function (h) { return h.t >= 30; })) { add('hotOutfit'); add('hotActivities'); add('hotItems'); }
+        if (current.temperature2mMin != null && current.temperature2mMin <= 5) { add('coldOutfit'); add('coldItems'); }
+        if (Math.abs(current.temperature2mMax - current.temperature2mMin) >= 10) { add('diffOutfit'); }
+        if (current.uvIndex != null && current.uvIndex >= 6) { add('uvItems'); }
+        if (current.precip === 0 && current.cloudCover <= 20) { add('clearOutfit'); add('clearActivities'); }
+        else if (current.cloudCover >= 80) { add('cloudyOutfit'); add('cloudyActivities'); }
+        if (current.windSpeed10m >= 6) { add('windActivities'); add('windItems'); }
+        if (current.windGusts10m >= 12) { add('gustItems'); }
+        if (current.weatherCode === 95) { add('thunderRisk'); }
+        if (current.precip >= 7.6) { add('heavyRisk'); }
+        if (current.windGusts10m >= 12) { add('gustRisk'); }
+        if (current.cloudCover >= 95 && current.visibility != null && current.visibility <= 1) { add('fogRisk'); }
+        if (!advice.length) { add('defaultOutfit'); add('defaultActivities'); add('defaultItems'); }
+        return advice;
       }
-      const cols = { outfit: '[data-col="outfit"]', activities: '[data-col="activities"]', items: '[data-col="items"]' };
-      for (const [k, sel] of Object.entries(cols)) {
-        const col = section.querySelector(sel);
-        const ul = col.querySelector('ul');
-        ul.innerHTML = a[k].map((x) => `<li>${x}</li>`).join('');
+      function setText(sel, text) { var el = root.querySelector(sel); if (el) el.textContent = text; }
+      function renderNow(current) {
+        var pair = describe(current.weatherCode, true);
+        setText('[data-weather-icon="now"]', ICONS[pair[0]]);
+        setText('[data-weather-temp="now"]', Math.round(current.temperature2m) + '°');
+        setText('[data-weather-desc="now"]', pair[1]);
+        setText('[data-weather-precip="now"]', Math.round(current.precipProbability) + '%');
+        setText('[data-weather-wind="now"]', current.windSpeed10m.toFixed(1) + ' m/s');
+        setText('[data-weather-humidity="now"]', Math.round(current.relativeHumidity2m) + '%');
+        setText('[data-weather-feels="now"]', Math.round(current.apparentTemperature) + '°');
       }
-      adviceEl.hidden = false;
-    }
-
-    function paint(data) {
-      renderNow(data.current, data.daily);
-      renderForecast(data.daily);
-      renderAdvice(buildAdvice(data.daily));
-    }
-
-    function readCache() {
-      try {
-        const raw = localStorage.getItem(CACHE_KEY);
-        if (!raw) return null;
-        return JSON.parse(raw);
-      } catch (e) {
-        return null;
+      function renderForecast(daily) {
+        var list = root.querySelector('[data-weather-forecast-list]');
+        if (!list) return;
+        var html = '';
+        for (var i = 0; i < daily.time.length; i++) {
+          var pair = describe(daily.weatherCode[i], true);
+          var wd = new Date(daily.time[i] + 'T00:00').getDay();
+          var label = i === 0 ? WX.today : i === 1 ? WX.tomorrow : WX.weekday[wd];
+          html += '<div class="weather-forecast__item">' +
+            '<span class="weather-forecast__day">' + label + '</span>' +
+            '<span class="weather-forecast__icon">' + ICONS[pair[0]] + '</span>' +
+            '<span class="weather-forecast__desc">' + pair[1] + '</span>' +
+            '<span class="weather-forecast__temp">' + Math.round(daily.temperature2mMin[i]) + '° / ' + Math.round(daily.temperature2mMax[i]) + '°</span>' +
+            '</div>';
+        }
+        list.innerHTML = html;
       }
-    }
-
-    function writeCache(data) {
-      try {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), d: data }));
-      } catch (e) {}
-    }
-
-    async function load() {
-      const cached = readCache();
-      if (cached && Date.now() - cached.t < TTL) {
-        paint(cached.d);
-        return;
+      function renderAdvice(current, day, hourly) {
+        var advice = buildAdvice(current, day, hourly);
+        var map = { outfit: [], activities: [], items: [] };
+        advice.forEach(function (m) {
+          if (m.indexOf('服装') > -1 || m.indexOf('Clothing') > -1 || m.indexOf('服裝') > -1) map.outfit.push(m);
+          else if (m.indexOf('持ち物') > -1 || m.indexOf('What to bring') > -1 || m.indexOf('攜帶物品') > -1) map.items.push(m);
+          else map.activities.push(m);
+        });
+        ['outfit', 'activities', 'items'].forEach(function (col) {
+          var ul = root.querySelector('[data-weather-col="' + col + '"]');
+          if (!ul) return;
+          ul.innerHTML = map[col].map(function (m) { return '<li>' + m + '</li>'; }).join('') || '<li>—</li>';
+        });
       }
-      const url =
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-        '&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,is_day' +
-        '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,wind_speed_10m_max,wind_gusts_10m_max,precipitation_sum,sunrise,sunset' +
-        '&timezone=auto&forecast_days=7';
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error('network');
-        const data = await res.json();
-        writeCache(data);
-        paint(data);
-      } catch (e) {
-        nowEl.innerHTML = '<p class="weather-error">天気を取得できませんでした。しばらくしてからご確認ください。</p>';
+      function showError() {
+        var nodes = root.querySelectorAll('.weather-loading');
+        nodes.forEach(function (n) { n.textContent = WX.error || '—'; });
       }
-    }
-
-    load();
-  }
-</script>
+      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + LAT + '&longitude=' + LON +
+        '&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,cloud_cover,visibility,precipitation_probability' +
+        '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max' +
+        '&timezone=Asia%2FTokyo&forecast_days=7';
+      fetch(url).then(function (r) { return r.json(); }).then(function (data) {
+        var cur = data.current, day = { precipProbability: (data.daily.precipitation_probability_max || [0])[0] || 0 };
+        var hourly = (data.hourly && data.hourly.temperature_2m ? data.hourly.temperature_2m : []).map(function (t) { return { t: t }; });
+        var current = {
+          weatherCode: cur.weather_code, temperature2m: cur.temperature_2m,
+          temperature2mMax: (data.daily.temperature_2m_max || [cur.temperature_2m])[0],
+          temperature2mMin: (data.daily.temperature_2m_min || [cur.temperature_2m])[0],
+          precip: cur.precipitation, precipProbability: cur.precipitation_probability,
+          windSpeed10m: cur.wind_speed_10m, windGusts10m: cur.wind_gusts_10m,
+          cloudCover: cur.cloud_cover, relativeHumidity2m: cur.relative_humidity_2m,
+          apparentTemperature: cur.apparent_temperature, visibility: cur.visibility,
+          uvIndex: (data.daily.uv_index_max || [null])[0]
+        };
+        renderNow(current);
+        renderForecast(data.daily);
+        renderAdvice(current, day, hourly);
+      }).catch(showError);
+    })();
+  </script>
+</section>

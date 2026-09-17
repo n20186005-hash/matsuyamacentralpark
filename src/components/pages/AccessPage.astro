@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import TransportSection from '../../components/TransportSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('access.page.title')}
+  description={t('access.page.description')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="access-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('access.hero.eyebrow')}
+    title={t('access.hero.title')}
+    lead={t('access.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('access.hero.eyebrow')}
+  />
+
+  <section class="section container" id="about" aria-labelledby="about-title">
+    <SectionHeading eyebrow={t('access.address.eyebrow')} title={t('access.address.title')} text={t('access.address.text')} />
+    <div class="address-layout">
+      <div class="address-layout__text">
+        <p class="address-layout__full">{content.site.address}</p>
+        <dl class="address-meta">
+          <div><dt>tel</dt><dd><a href={`tel:${content.site.phone.replaceAll('-', '')}`}>{content.site.phone}</a></dd></div>
+          <div><dt>URL</dt><dd><a href={content.seo.govTourismUrl}>{content.seo.fullName}</a></dd></div>
+        </dl>
+        <a class="button button--solid" href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="map-pin" size={18} />{t('access.address.open')}</a>
+      </div>
+      <div class="address-layout__map">
+        <iframe title={t('access.map.label')} src={content.seo.mapsEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--blue" id="methods" aria-labelledby="methods-title">
+    <div class="container">
+      <SectionHeading eyebrow={t('access.methods.eyebrow')} title={t('access.methods.title')} text={t('access.methods.text')} />
+      <div class="access-methods">
+        {content.access.map((method, index) => (
+          <article class:list={['access-method', { 'access-method--featured': method.id === 'train' }]}>
+            <span class="access-method__no">{(index + 1).toString().padStart(2, '0')}</span>
+            <Icon class="access-method__icon" name={method.icon} size={34} />
+            <div>
+              <h3>{method.title}</h3>
+              <p>{method.lead}</p>
+              <ol class="access-method__steps">
+                {method.steps.map((step, stepIndex) => <li><span>{stepIndex + 1}</span>{step}</li>)}
+              </ol>
+            </div>
+            {method.id === 'train' && <span class="access-method__badge">{t('access.method.label')}</span>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="station" aria-labelledby="station-title">
+    <SectionHeading eyebrow={t('access.station.eyebrow')} title={t('access.station.title')} text={t('access.station.text')} />
+    <ol class="access-steps">
+      <li><span class="access-steps__no">1</span><div><h3>{t('access.station.s1h')}</h3><p>{t('access.station.s1p')}</p></div></li>
+      <li><span class="access-steps__no">2</span><div><h3>{t('access.station.s2h')}</h3><p>{t('access.station.s2p')}</p></div></li>
+      <li><span class="access-steps__no">3</span><div><h3>{t('access.station.s3h')}</h3><p>{t('access.station.s3p')}</p></div></li>
+    </ol>
+  </section>
+
+  <section class="section--map">
+    <div class="map-embed">
+      <iframe title={t('access.map.label')} src={content.seo.mapsEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="map-embed__open" href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.map.open')}</a>
+    </div>
+  </section>
+
+  <section class="section container" id="parking" aria-labelledby="parking-title">
+    <SectionHeading eyebrow={t('access.parking.eyebrow')} title={t('access.parking.title')} text={t('access.parking.text')} />
+    <div class="parking-notices">
+      <article class="parking-notice"><span class="parking-notice__icon"><Icon name="clock" size={22} /></span><div><h3>{t('access.parking.n1h')}</h3><p>{t('access.parking.n1p')}</p></div></article>
+      <article class="parking-notice"><span class="parking-notice__icon"><Icon name="ticket" size={22} /></span><div><h3>{t('access.parking.n2h')}</h3><p>{t('access.parking.n2p')}</p></div></article>
+      <article class="parking-notice"><span class="parking-notice__icon"><Icon name="route" size={22} /></span><div><h3>{t('access.parking.n3h')}</h3><p>{t('access.parking.n3p')}</p></div></article>
+    </div>
+  </section>
+
+  <TransportSection locale={locale} />
+  <ServicesSection locale={locale} />
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('access.hero.eyebrow')}</p>
+        <h2>{t('access.contact.name')}</h2>
+        <p>{t('access.contact.text')}</p>
+        <a class="button button--solid" href={`tel:${content.site.phone.replaceAll('-', '')}`}><Icon name="phone" size={18} />{content.site.phone}</a>
+      </div>
+      <address class="cta-grid__address">
+        <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+        <a href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.address.open')}</a>
+      </address>
+    </div>
+  </section>
+
+  <PhotoCredit items={content.credits} heading={t('credits')} />
+</BaseLayout>

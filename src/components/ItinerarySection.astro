@@ -1,33 +1,38 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import Icon from './Icon.astro';
-import { content } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
 
-const icons = { family: 'family', photo: 'camera', accessible: 'walk', 'half-day': 'clock', 'full-day': 'route' };
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
+const content = getContent(locale);
+const icons: Record<string, string> = {
+  family: 'family', photo: 'camera', accessible: 'walk',
+  'half-day': 'clock', 'full-day': 'route'
+};
 ---
-
 <section class="section section--paper itinerary-section" id="itineraries" aria-labelledby="itineraries-title">
   <div class="container">
-    <SectionHeading
-      eyebrow="モデルコース"
-      title="目的と時間に合わせて、今日の順路を。"
-      text="ご家族の構成や歩くペース、滞在時間に合わせて選べる、三つの対象別コースと、半日・一日の組み立て例です。"
-    />
-
-    <p class="itinerary-group__label">ご本人のスタイルで選ぶ</p>
+    <SectionHeading eyebrow={t('itinerary.eyebrow')} title={t('itinerary.title')} text={t('itinerary.text')} />
+    <p class="itinerary-group__label">{t('itinerary.groupPersona')}</p>
     <div class="itinerary-grid">
       {content.itineraries.personas.map((it, index) => (
         <article class="itinerary-card">
           <header class="itinerary-card__head">
             <span class="itinerary-card__icon"><Icon name={icons[it.id] ?? 'route'} size={26} /></span>
-            <span class="itinerary-card__no">コース {String(index + 1).padStart(2, '0')}</span>
+            <span class="itinerary-card__no">{t('common.course')} {String(index + 1).padStart(2, '0')}</span>
           </header>
           <h3>{it.title}</h3>
           <p class="itinerary-card__summary">{it.summary}</p>
           <div class="itinerary-card__meta">
             {it.forWhom && <span><strong>{it.forWhom}</strong></span>}
             {it.pace && <span><strong>{it.pace}</strong></span>}
-            <span class="itinerary-card__duration"><strong>{it.duration}</strong> 目安</span>
+            <span class="itinerary-card__duration"><strong>{it.duration}</strong> {t('itinerary.durationLabel')}</span>
           </div>
           <ol class="itinerary-card__stops">
             {it.stops.map((stop, stopIndex) => <li><span>{stopIndex + 1}</span>{stop}</li>)}
@@ -35,19 +40,18 @@ const icons = { family: 'family', photo: 'camera', accessible: 'walk', 'half-day
         </article>
       ))}
     </div>
-
-    <p class="itinerary-group__label">時間の目安で選ぶ</p>
+    <p class="itinerary-group__label">{t('itinerary.groupGeneral')}</p>
     <div class="itinerary-grid itinerary-grid--two">
       {content.itineraries.general.map((it, index) => (
         <article class="itinerary-card">
           <header class="itinerary-card__head">
             <span class="itinerary-card__icon"><Icon name={icons[it.id] ?? 'route'} size={26} /></span>
-            <span class="itinerary-card__no">コース {String(index + 1).padStart(2, '0')}</span>
+            <span class="itinerary-card__no">{t('common.course')} {String(index + 1).padStart(2, '0')}</span>
           </header>
           <h3>{it.title}</h3>
           <p class="itinerary-card__summary">{it.summary}</p>
           <div class="itinerary-card__meta">
-            <span class="itinerary-card__duration"><strong>{it.duration}</strong> 目安</span>
+            <span class="itinerary-card__duration"><strong>{it.duration}</strong> {t('itinerary.durationLabel')}</span>
           </div>
           <ol class="itinerary-card__stops">
             {it.stops.map((stop, stopIndex) => <li><span>{stopIndex + 1}</span>{stop}</li>)}

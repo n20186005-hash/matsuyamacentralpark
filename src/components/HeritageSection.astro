@@ -1,15 +1,19 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { content } from '../data/site';
----
+import type { Locale } from '../i18n/config';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
+const content = getContent(locale);
+---
 <section class="section section--paper heritage-section" id="heritage" aria-labelledby="heritage-title">
   <div class="container">
-    <SectionHeading
-      eyebrow="公園の背景とまちの歴史"
-      title="一つの球場に、百年以上の物語が集まる。"
-      text="スポーツ施設が並ぶ今の風景の下には、市坪の土地の歴史、野球と文学が交わる松山の文化、そして海を越えたつながりがあります。"
-    />
+    <SectionHeading eyebrow={t('heritage.eyebrow')} title={t('heritage.title')} text={t('heritage.text')} />
     <div class="heritage-grid">
       {content.heritage.map((item) => (
         <article class="heritage-card">

@@ -1,7 +1,12 @@
 ---
+import type { Locale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
 interface Props {
   label: string;
+  locale?: Locale;
 }
-const { label } = Astro.props;
+const { label, locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
 ---
-<span class="photo-credit">写真：{label}</span>
+<span class="photo-credit">{t('common.photoPrefix')}{label}</span>

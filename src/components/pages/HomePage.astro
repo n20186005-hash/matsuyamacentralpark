@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FacilityCard from '../../components/FacilityCard.astro';
+import RoutePlanner from '../../components/RoutePlanner.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import TransportSection from '../../components/TransportSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import ReviewSection from '../../components/ReviewSection.astro';
+import SeoEntitySection from '../../components/SeoEntitySection.astro';
+import SourcesSection from '../../components/SourcesSection.astro';
+import HeritageSection from '../../components/HeritageSection.astro';
+import WeatherWidget from '../../components/WeatherWidget.astro';
+import SeasonsSection from '../../components/SeasonsSection.astro';
+import ItinerarySection from '../../components/ItinerarySection.astro';
+import ResponsibilitySection from '../../components/ResponsibilitySection.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={content.site.name}
+  description={t('home.metaDescription')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="home-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('home.hero.eyebrow')}
+    title={content.site.tagline}
+    lead={t('home.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('home.hero.eyebrow')}
+    tone="blue"
+  />
+
+  <section class="section container" id="intro">
+    <SectionHeading eyebrow={t('home.intro.eyebrow')} title={t('home.intro.title')} text={t('home.intro.text')} />
+    <p class="intro-body">{t('home.intro.body')}</p>
+    <div class="intro-actions">
+      <a class="button button--solid" href={localizePath('/stories/', locale)}>
+        {t('home.intro.storyLink')} <Icon name="arrow" size={18} />
+      </a>
+      <a class="button button--ghost" href={localizePath('/visit/', locale)}>
+        {t('home.intro.visitLink')} <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="experiences">
+    <div class="container">
+      <SectionHeading eyebrow={t('home.experiences.eyebrow')} title={t('home.experiences.title')} text={t('home.experiences.text')} />
+      <div class="experience-grid">
+        {content.experiences.map((experience) => (
+          <article class="experience-card">
+            <div class="experience-card__icon"><Icon name={experience.modal ?? experience.icon} size={30} /></div>
+            <h3>{experience.title}</h3>
+            <p>{experience.text}</p>
+            <a class="text-link" href={localizePath(experience.link ?? experience.href, locale)}>
+              {t('common.detail')} <Icon name="arrow" size={18} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="facilities-preview">
+    <SectionHeading eyebrow={t('home.facilities.eyebrow')} title={t('home.facilities.title')} text={t('home.facilities.text')} />
+    <div class="facility-preview-grid">
+      {content.facilities.slice(0, 4).map((facility) => (
+        <FacilityCard facility={facility} variant="image" locale={locale} />
+      ))}
+    </div>
+    <a class="button button--ghost" href={localizePath('/facilities/', locale)}>
+      {t('home.facilities.all')} <Icon name="arrow" size={18} />
+    </a>
+  </section>
+
+  <section class="section section--blue" id="story-feature">
+    <div class="container story-feature">
+      <div class="story-feature__text">
+        <SectionHeading
+          light
+          eyebrow={t('home.story.eyebrow')}
+          title={t('home.story.title')}
+          text={t('home.story.text')}
+        />
+        <a class="button button--solid" href={localizePath('/stories/', locale)}>
+          {t('home.story.read')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <ul class="story-feature__list">
+        {content.stories.slice(0, 3).map((story) => (
+          <li>
+            <a href={localizePath(`/stories/#${story.id}`, locale)}>
+              <span>{story.eyebrow}</span>
+              <strong>{story.title}</strong>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section container" id="access-preview">
+    <div class="container access-preview">
+      <div class="access-preview__text">
+        <SectionHeading eyebrow={t('home.access.eyebrow')} title={t('home.access.title')} text={t('home.access.text')} />
+        <ol class="access-preview__steps">
+          <li>
+            <span class="access-preview__step-title">{t('home.access.s1title')}</span>
+            <span class="access-preview__step-sub">{t('home.access.s1sub')}</span>
+          </li>
+          <li>
+            <span class="access-preview__step-title">{t('home.access.s2title')}</span>
+            <span class="access-preview__step-sub">{t('home.access.s2sub')}</span>
+          </li>
+          <li>
+            <span class="access-preview__step-title">{t('home.access.s3title')}</span>
+            <span class="access-preview__step-sub">{t('home.access.s3sub')}</span>
+          </li>
+        </ol>
+        <a class="button button--ghost" href={localizePath('/access/', locale)}>
+          {t('home.access.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <div class="access-preview__media">
+        <img src="/images/hero-1800.webp" alt={content.facilities[0].alt} width="1800" height="1200" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="faq">
+    <div class="container faq-layout">
+      <div class="faq-layout__heading">
+        <SectionHeading eyebrow={t('home.faq.eyebrow')} title={t('home.faq.title')} text={t('home.faq.text')} />
+      </div>
+      <div class="faq-list">
+        {content.faqs.map((faq) => (
+          <details class="faq-item" name="home-faq">
+            <summary>{faq.question}<Icon name="chevron" size={22} /></summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ReviewSection locale={locale} />
+  <SeoEntitySection locale={locale} />
+  <SourcesSection locale={locale} />
+  <HeritageSection locale={locale} />
+  <WeatherWidget locale={locale} />
+  <SeasonsSection locale={locale} />
+  <ItinerarySection locale={locale} />
+  <ResponsibilitySection locale={locale} />
+  <TransportSection locale={locale} />
+  <ServicesSection locale={locale} />
+
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>

@@ -1,15 +1,19 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { content } from '../data/site';
----
+import type { Locale } from '../i18n/config';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
+const content = getContent(locale);
+---
 <section class="section section--cream responsibility-section" id="responsibility" aria-labelledby="responsibility-title">
   <div class="container">
-    <SectionHeading
-      eyebrow="科学と、訪問者の責任"
-      title="緑地を守り、すべての人が過ごしやすい公園へ。"
-      text={content.responsibility.intro}
-    />
+    <SectionHeading eyebrow={t('responsibility.eyebrow')} title={t('responsibility.title')} text={content.responsibility.intro} />
     <div class="responsibility-grid">
       {content.responsibility.principles.map((principle, index) => (
         <article class="responsibility-card">
@@ -20,7 +24,7 @@ import { content } from '../data/site';
       ))}
     </div>
     <div class="responsibility-science">
-      <p class="mini-label">この公園が果たす役割</p>
+      <p class="mini-label">{t('responsibility.roleLabel')}</p>
       <p>{content.responsibility.scienceNote}</p>
     </div>
   </div>

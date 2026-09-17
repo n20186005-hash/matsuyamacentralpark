@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FacilityCard from '../../components/FacilityCard.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+
+const detailLinks: Record<string, { href: string; label: string }> = {
+  'no-ball-museum': { href: localizePath('/stories/#kondo', locale), label: t('facilities.museumLink') },
+  'aqua-palette': { href: localizePath('/visit/#family-route', locale), label: t('facilities.aquaLink') },
+  'ehime-budokan': { href: localizePath('/visit/#architecture-route', locale), label: t('facilities.budokanLink') }
+};
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('facilities.metaTitle')}
+  description={t('facilities.metaDescription')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="facilities-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('facilities.hero.eyebrow')}
+    title={t('facilities.hero.title')}
+    lead={t('facilities.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('facilities.hero.eyebrow')}
+  />
+
+  <nav class="facility-anchors" aria-label={t('facilities.anchorLabel')}>
+    <p class="mini-label">{t('facilities.anchorNav')}</p>
+    <div class="facility-anchors__links">
+      {content.facilities.slice(0, 4).map((f) => (
+        <a href={`#${f.id}`}>{f.name}</a>
+      ))}
+    </div>
+  </nav>
+
+  <section class="section container" id="intro">
+    <SectionHeading eyebrow={t('facilities.intro.eyebrow')} title={t('facilities.intro.title')} text={t('facilities.intro.text')} />
+    <div class="facility-grid">
+      {content.facilities.slice(0, 4).map((facility) => (
+        <FacilityCard facility={facility} variant="simple" locale={locale}>
+          {detailLinks[facility.id] && (
+            <a class="facility-card__link" href={detailLinks[facility.id].href}>
+              {detailLinks[facility.id].label} <Icon name="arrow" size={18} />
+            </a>
+          )}
+        </FacilityCard>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--blue" id="other">
+    <div class="container">
+      <SectionHeading eyebrow={t('facilities.other.eyebrow')} title={t('facilities.other.title')} text={t('facilities.other.text')} />
+      <div class="facility-grid facility-grid--simple">
+        {content.facilities.slice(4).map((facility) => (
+          <FacilityCard facility={facility} variant="simple" locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="compare">
+    <SectionHeading eyebrow={t('facilities.compare.eyebrow')} title={t('facilities.compare.title')} text={t('facilities.compare.text')} />
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <caption class="visually-hidden">{t('facilities.compare.aria')}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t('facilities.compare.th1')}</th>
+            <th scope="col">{t('facilities.compare.th2')}</th>
+            <th scope="col">{t('facilities.compare.th3')}</th>
+            <th scope="col">{t('facilities.compare.th4')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {content.facilities.map((facility) => (
+            <tr>
+              <th scope="row"><a href={`#${facility.id}`}>{facility.name}</a></th>
+              <td>{facility.category}</td>
+              <td>{facility.hours}</td>
+              <td>{facility.bestFor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('facilities.cta.label')}</p>
+        <h2>{t('facilities.cta.title')}</h2>
+        <p>{t('facilities.cta.text')}</p>
+        <a class="button button--solid" href={localizePath('/visit/', locale)}>
+          {t('facilities.cta.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <address class="cta-grid__address">
+        <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+        <a href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.address.open')}</a>
+      </address>
+    </div>
+  </section>
+
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>

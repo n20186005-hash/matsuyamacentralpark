@@ -1,5 +1,8 @@
 ---
 import Icon from './Icon.astro';
+import { useTranslations } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
 
 interface Props {
   eyebrow: string;
@@ -10,6 +13,7 @@ interface Props {
   alt: string;
   current: string;
   tone?: 'blue' | 'night';
+  locale?: Locale;
 }
 
 const {
@@ -20,18 +24,21 @@ const {
   imageMobile,
   alt,
   current,
-  tone = 'blue'
+  tone = 'blue',
+  locale = 'ja'
 } = Astro.props;
+const t = useTranslations(locale);
+const heroClass = ['page-hero', `page-hero--${tone}`];
 ---
-<section class:list={['page-hero', `page-hero--${tone}`]}> 
+<section class:list={heroClass}>
   <picture class="page-hero__media">
     {imageMobile && <source media="(max-width: 680px)" srcset={imageMobile} />}
     <img src={image} alt={alt} width="1800" height="1200" fetchpriority="high" />
   </picture>
   <div class="page-hero__shade"></div>
   <div class="container page-hero__inner">
-    <nav class="breadcrumbs" aria-label="パンくずリスト">
-      <a href="/">ホーム</a>
+    <nav class="breadcrumbs" aria-label={t('breadcrumbs')}>
+      <a href={localizePath('/', locale)}>{t('home')}</a>
       <Icon name="arrow" size={15} />
       <span aria-current="page">{current}</span>
     </nav>

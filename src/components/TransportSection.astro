@@ -1,15 +1,24 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import Icon from './Icon.astro';
-import { content } from '../data/site';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
 ---
 
 <section class="section section--paper transport-section" id="transport" aria-labelledby="transport-title">
   <div class="container">
     <SectionHeading
-      eyebrow="詳しい行き方"
-      title="空港・電車・バス・タクシー・車、全部まとめ。"
-      text="出発地ごとに、目安の時間と乗り継ぎを整理しました。イベント日は時間に余裕を持って移動してください。"
+      eyebrow={t('transport.eyebrow')}
+      title={t('transport.title')}
+      text={t('transport.text')}
     />
     <div class="transport-grid">
       {content.transport.map((method, index) => (
@@ -17,7 +26,7 @@ import { content } from '../data/site';
           <div class="transport-card__head">
             <span class="transport-card__icon"><Icon name={method.icon} size={30} /></span>
             <div>
-              <span class="transport-card__no">方法 {String(index + 1).padStart(2, '0')}</span>
+              <span class="transport-card__no">{t('access.method.label')} {String(index + 1).padStart(2, '0')}</span>
               <h3>{method.mode}</h3>
             </div>
           </div>

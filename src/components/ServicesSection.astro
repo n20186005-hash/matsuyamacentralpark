@@ -1,14 +1,23 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { content } from '../data/site';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
 ---
 
 <section class="section section--cream services-section" id="services" aria-labelledby="services-title">
   <div class="container">
     <SectionHeading
-      eyebrow="訪問者向けサービス"
-      title="園内の設備と、周辺の便利情報。"
-      text="トイレや駐車場から、飲食・宿泊・買い物・給油・充電まで。特定の店名は挙げず、ご自身の計画に合わせてご利用ください。"
+      eyebrow={t('services.eyebrow')}
+      title={t('services.title')}
+      text={t('services.text')}
     />
     <div class="services-grid">
       {content.visitorServices.map((service, index) => (

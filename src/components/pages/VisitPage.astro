@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import RoutePlanner from '../../components/RoutePlanner.astro';
+import RouteCard from '../../components/RouteCard.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+
+const sceneKeys = [
+  ['visit.scene1.name', 'visit.scene1.strong', 'visit.scene1.small'],
+  ['visit.scene2.name', 'visit.scene2.strong', 'visit.scene2.small'],
+  ['visit.scene3.name', 'visit.scene3.strong', 'visit.scene3.small']
+];
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('visit.metaTitle')}
+  description={t('visit.metaDescription')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="visit-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('visit.hero.eyebrow')}
+    title={t('visit.hero.title')}
+    lead={t('visit.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('visit.hero.eyebrow')}
+  />
+
+  <RoutePlanner locale={locale} heading={t('visit.planner.heading')} text={t('visit.planner.text')} />
+
+  <section class="section container" id="routes">
+    <SectionHeading eyebrow={t('visit.routes.eyebrow')} title={t('visit.routes.title')} text={t('visit.routes.text')} />
+    <div class="route-grid">
+      {content.routes.map((route, index) => (
+        <RouteCard route={route} index={index} locale={locale} />
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--paper" id="scenes">
+    <div class="container">
+      <SectionHeading eyebrow={t('visit.scenes.eyebrow')} title={t('visit.scenes.title')} text={t('visit.scenes.text')} />
+      <div class="scene-grid">
+        {sceneKeys.map(([name, strong, small]) => (
+          <article class="scene-card">
+            <span class="scene-card__name">{t(name)}</span>
+            <strong>{t(strong)}</strong>
+            <span class="scene-card__small">{t(small)}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="tips">
+    <div class="container">
+      <SectionHeading eyebrow={t('visit.tips.eyebrow')} title={t('visit.tips.title')} />
+      <div class="visit-tips">
+        {content.visitTips.map((tip) => (
+          <article class="visit-tip">
+            <div class="visit-tip__icon"><Icon name={tip.icon} size={30} /></div>
+            <h3>{tip.title}</h3>
+            <p>{tip.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--paper" id="day">
+    <div class="container day-plan">
+      <div class="day-plan__text">
+        <p class="mini-label">{t('visit.day.label')}</p>
+        <h2>{t('visit.day.title')}</h2>
+        <p>{t('visit.day.text')}</p>
+      </div>
+      <ol class="day-plan__steps">
+        <li>
+          <span class="day-plan__step-title">{t('visit.day.s1title')}</span>
+          <span class="day-plan__step-sub">{t('visit.day.s1sub')}</span>
+        </li>
+        <li>
+          <span class="day-plan__step-title">{t('visit.day.s2title')}</span>
+          <span class="day-plan__step-sub">{t('visit.day.s2sub')}</span>
+        </li>
+        <li>
+          <span class="day-plan__step-title">{t('visit.day.s3title')}</span>
+          <span class="day-plan__step-sub">{t('visit.day.s3sub')}</span>
+        </li>
+        <li>
+          <span class="day-plan__step-title">{t('visit.day.s4title')}</span>
+          <span class="day-plan__step-sub">{t('visit.day.s4sub')}</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('visit.cta.label')}</p>
+        <h2>{t('visit.cta.title')}</h2>
+        <p>{t('visit.cta.text')}</p>
+        <a class="button button--solid" href={localizePath('/access/', locale)}>
+          {t('visit.cta.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <address class="cta-grid__address">
+        <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+        <a href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.address.open')}</a>
+      </address>
+    </div>
+  </section>
+
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>

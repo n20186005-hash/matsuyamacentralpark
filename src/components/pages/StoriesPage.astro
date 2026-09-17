@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import PhotoCredit from '../../components/PhotoCredit.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('stories.metaTitle')}
+  description={t('stories.metaDescription')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="stories-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('stories.hero.eyebrow')}
+    title={t('stories.hero.title')}
+    lead={t('stories.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('stories.hero.eyebrow')}
+  />
+
+  <section class="section container" id="opening">
+    <SectionHeading eyebrow={t('stories.opening.eyebrow')} title={t('stories.opening.title')} text={t('stories.opening.text')} />
+    <div class="story-stats">
+      <div><span class="story-stats__value">5</span><span class="story-stats__label">{t('stories.numbers1')}</span></div>
+      <div><span class="story-stats__value">3</span><span class="story-stats__label">{t('stories.numbers2')}</span></div>
+      <div><span class="story-stats__value">無料</span><span class="story-stats__label">{t('stories.numbers3')}</span></div>
+    </div>
+  </section>
+
+  <section class="section section--blue" id="stories">
+    <div class="container story-feature">
+      <div class="story-feature__text">
+        <SectionHeading
+          light
+          eyebrow={t('stories.sectionLabel')}
+          title={t('stories.hero.title')}
+          text={t('stories.hero.lead')}
+        />
+      </div>
+      <ul class="story-feature__list">
+        {content.stories.map((story) => (
+          <li>
+            <a href={localizePath(`/stories/#${story.id}`, locale)}>
+              <span>{story.eyebrow}</span>
+              <strong>{story.title}</strong>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section container" id="story-notes">
+    <div class="story-notes">
+      <div>
+        <p class="story-notes__title">{t('stories.shiki.title')}</p>
+        <p>{t('stories.shiki.text')}</p>
+      </div>
+      <div>
+        <p class="story-notes__title">{t('stories.name.title')}</p>
+        <p>{t('stories.name.text')}</p>
+      </div>
+      <div>
+        <p class="story-notes__title">{t('stories.kondo.title')}</p>
+        <p>{t('stories.kondo.text')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="museum">
+    <div class="container museum-section">
+      <div class="museum-section__text">
+        <SectionHeading eyebrow={t('stories.museum.label')} title={t('stories.museum.title')} text={t('stories.museum.text')} />
+        <dl class="museum-facts">
+          <div><dt>{t('stories.museum.open')}</dt><dd>{t('stories.museum.openValue')}</dd></div>
+          <div><dt>{t('stories.museum.hours')}</dt><dd>{t('stories.museum.hoursValue')}</dd></div>
+          <div><dt>{t('stories.museum.last')}</dt><dd>{t('stories.museum.lastValue')}</dd></div>
+          <div><dt>{t('stories.museum.fee')}</dt><dd>{t('stories.museum.feeValue')}</dd></div>
+        </dl>
+        <a class="button button--solid" href={localizePath('/facilities/', locale)}>
+          {t('stories.museum.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <div class="museum-section__media">
+        <img src="/images/hero-1800.webp" alt={content.facilities[0].alt} width="1800" height="1200" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('stories.cta.label')}</p>
+        <h2>{t('stories.cta.title')}</h2>
+        <p>{t('stories.cta.text')}</p>
+        <a class="button button--solid" href={localizePath('/visit/', locale)}>
+          {t('stories.cta.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <address class="cta-grid__address">
+        <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+        <a href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.address.open')}</a>
+      </address>
+    </div>
+  </section>
+
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>

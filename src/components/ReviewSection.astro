@@ -1,7 +1,15 @@
 ---
 import Icon from './Icon.astro';
-import { content } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { getContent } from '../i18n/content';
+import { useTranslations } from '../i18n/ui';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const t = useTranslations(locale);
+const content = getContent(locale);
 const review = content.googleReview;
 const fullStars = Math.floor(review.rating);
 const hasHalf = review.rating % 1 >= 0.5;
@@ -10,42 +18,32 @@ const stars = Array.from({ length: 5 }, (_, i) => {
   if (i === fullStars && hasHalf) return 'half';
   return 'empty';
 });
-const reviewCountText = review.reviewCount.toLocaleString('en-US');
+const countLocale = locale === 'ja' ? 'ja-JP' : locale === 'zh-Hant' ? 'zh-TW' : 'en-US';
+const reviewCountText = review.reviewCount.toLocaleString(countLocale);
 ---
-
-<section class="section section--paper reviews-section" id="reviews" aria-label="Google マップの評価・口コミ">
+<section class="section section--paper reviews-section" id="reviews" aria-label={t('review.sectionLabel')}>
   <div class="container">
     <div class="section-heading reviews-section__heading">
-      <p class="section-heading__eyebrow">評価・口コミ</p>
-      <h2>Google マップの評価</h2>
-      <p class="section-heading__text">訪れた方々の評価を、出典を明記してお伝えします。</p>
+      <p class="section-heading__eyebrow">{t('review.eyebrow')}</p>
+      <h2>{t('review.title')}</h2>
+      <p class="section-heading__text">{t('review.text')}</p>
     </div>
-
     <div class="reviews-card">
       <div class="reviews-card__brand">
         <span class="reviews-card__g">G</span>
-        <span class="reviews-card__brand-text">Google マップ</span>
+        <span class="reviews-card__brand-text">{t('review.brand')}</span>
       </div>
-
       <div class="reviews-rating">
         <span class="reviews-rating__score">{review.rating.toFixed(1)}</span>
         <span class="reviews-rating__stars" aria-hidden="true">
-          {stars.map((s) => <span class:list={['star', `star--${s}`]}>★</span>)}
+          {stars.map((s) => <span class={`star star--${s}`}>★</span>)}
         </span>
-        <span class="reviews-rating__count">（{reviewCountText} 件の評価）</span>
+        <span class="reviews-rating__count">（{reviewCountText} {t('review.countSuffix')}）</span>
       </div>
-
-      <p class="reviews-sync">
-        评分与评价数同步自谷歌地图（Google Maps）用户评价 · {review.syncMonth} ·
-        <a href={review.mapsUrl} target="_blank" rel="noopener noreferrer">点击查看谷歌地图全部评价↗</a>
-      </p>
-
-      <p class="reviews-copyright">
-        同步自 Google 地图用户评价，同步时间 {review.syncMonth}；版权归原作者与 Google 地图所有
-      </p>
-
+      <p class="reviews-sync">{t('review.sync', { month: review.syncMonth })}</p>
+      <p class="reviews-copyright">{t('review.copyright', { month: review.syncMonth })}</p>
       <a class="button button--blue reviews-card__cta" href={review.mapsUrl} target="_blank" rel="noopener noreferrer">
-        在谷歌地图查看全部评价 <Icon name="arrow" size={18} />
+        {t('review.button')} <Icon name="arrow" size={18} />
       </a>
     </div>
   </div>

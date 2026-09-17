@@ -1,0 +1,16 @@
+---
+import AccessPage from '../../../components/pages/AccessPage.astro';
+import type { Locale } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh-Hant' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang as Locale;
+---
+
+<AccessPage locale={locale} />

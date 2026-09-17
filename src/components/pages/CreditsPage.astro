@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'ja' } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('credits.metaTitle')}
+  description={t('credits.metaDescription')}
+  image="/images/og.jpg"
+  currentPath={Astro.url.pathname}
+  bodyClass="credits-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('credits.hero.eyebrow')}
+    title={t('credits.title')}
+    lead={t('credits.intro')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('credits.hero.eyebrow')}
+  />
+
+  <section class="section container" id="credits">
+    <SectionHeading eyebrow={t('credits.section.eyebrow')} title={t('credits.section.title')} text={t('credits.section.text')} />
+    <ul class="credit-list">
+      {content.credits.map((credit) => (
+        <li class="credit-item">
+          <div class="credit-item__media">
+            <img src={credit.image} alt={credit.alt} width="640" height="420" loading="lazy" />
+          </div>
+          <div class="credit-item__body">
+            <p class="credit-item__author"><span class="credit-item__label">{t('credits.author')}</span>{credit.author}</p>
+            <p class="credit-item__license"><span class="credit-item__label">{t('credits.license')}</span>{credit.license}</p>
+            <p class="credit-item__usage"><span class="credit-item__label">{t('credits.usage')}</span>{credit.usage}</p>
+            <a class="text-link" href={credit.source} target="_blank" rel="noopener noreferrer">
+              {t('credits.source')} <Icon name="arrow" size={16} />
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('credits.cta.label')}</p>
+        <h2>{t('credits.cta.title')}</h2>
+        <p>{t('credits.cta.text')}</p>
+        <a class="button button--solid" href={localizePath('/facilities/', locale)}>
+          {t('credits.cta.button')} <Icon name="arrow" size={18} />
+        </a>
+      </div>
+      <address class="cta-grid__address">
+        <span><Icon name="map-pin" size={18} />{content.site.address}</span>
+        <a href={content.seo.mapsUrl} target="_blank" rel="noopener noreferrer"><Icon name="external" size={18} />{t('access.address.open')}</a>
+      </address>
+    </div>
+  </section>
+</BaseLayout>
