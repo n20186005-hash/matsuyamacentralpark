@@ -32,7 +32,12 @@ const faqSchema = {
   }))
 };
 ---
-<BaseLayout title={content.site.name} currentPath="/" bodyClass="home-page">
+<BaseLayout
+  title={content.site.name}
+  description="愛媛県松山市の松山中央公園（坊っちゃんスタジアム）の公式ガイド。施設案内、JR市坪駅からのアクセス、駐車場の料金と利用時間、野球と市民スポーツのイベント情報を掲載します。"
+  currentPath="/"
+  bodyClass="home-page"
+>
   <section class="home-hero">
     <picture class="home-hero__media">
       <source media="(max-width: 680px)" srcset="/images/hero-mobile.webp" />

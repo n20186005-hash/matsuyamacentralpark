@@ -1,0 +1,48 @@
+---
+import { locales, localeLabels, type Locale } from '../i18n/config';
+import { localizePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  available?: Locale[];
+  currentPath: string;
+}
+const { locale, available = locales, currentPath } = Astro.props;
+const options = locales.filter((l) => available.includes(l));
+---
+<div class="lang-switcher">
+  <button type="button" class="lang-switcher__toggle" aria-expanded="false" aria-haspopup="true" aria-label="Language">
+    <span aria-hidden="true">🌐</span><span class="lang-switcher__current">{localeLabels[locale]}</span>
+  </button>
+  <ul class="lang-switcher__menu" role="menu">
+    {options.map((l) => (
+      <li role="none">
+        <a
+          role="menuitem"
+          href={localizePath(currentPath, l)}
+          hreflang={l}
+          aria-current={l === locale ? 'true' : undefined}
+          class:list={['lang-switcher__item', { 'is-active': l === locale }]}
+        >{localeLabels[l]}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.lang-switcher__toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const menu = btn.nextElementSibling as HTMLElement | null;
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if (menu) menu.classList.toggle('is-open', !open);
+    });
+  });
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll<HTMLElement>('.lang-switcher').forEach((sw) => {
+      if (!sw.contains(e.target as Node)) {
+        sw.classList.remove('is-open');
+        sw.querySelector('.lang-switcher__toggle')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

@@ -19,7 +19,10 @@ const {
   image = '/images/og.jpg',
   bodyClass = ''
 } = Astro.props;
-const pageTitle = title === content.site.name ? title : `${title}｜${content.site.name}`;
+const pageTitle =
+  title === content.site.name
+    ? `${content.site.name}【公式】｜坊っちゃんスタジアム・施設案内・アクセス・駐車場`
+    : `${title}｜${content.site.name}`;
 const analyticsId = import.meta.env.PUBLIC_GA_ID as string | undefined;
 const siteUrl = `https://${content.seo.domain}`;
 const canonicalUrl = `${siteUrl}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
@@ -53,7 +56,8 @@ const structuredData = {
     { '@type': 'LocationFeatureSpecification', name: '野球場', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'プール', value: true },
     { '@type': 'LocationFeatureSpecification', name: '武道館', value: true },
-    { '@type': 'LocationFeatureSpecification', name: 'テニスコート', value: true }
+    { '@type': 'LocationFeatureSpecification', name: 'テニスコート', value: true },
+    { '@type': 'LocationFeatureSpecification', name: '駐車場', value: true }
   ]
 };
 ---

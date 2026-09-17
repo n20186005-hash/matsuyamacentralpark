@@ -1,0 +1,668 @@
+{
+  "site": {
+    "name": "Matsuyama Central Park",
+    "tagline": "Where the memory of baseball and sports lives on.",
+    "description": "A sports park in Matsuyama centered on Botchan Stadium, uniting baseball culture, martial arts, swimming, and community sports. Explore facility highlights, model courses, and how to get here.",
+    "address": "625-1 Ichitsubo-Nishimachi, Matsuyama, Ehime 790-0948",
+    "phone": "089-965-3000",
+    "latitude": 33.8093572,
+    "longitude": 132.7459764,
+    "area": "41.19 hectares"
+  },
+  "seo": {
+    "domain": "matsuyamacentralpark.com",
+    "fullName": "Matsuyama Central Park",
+    "shortName": "Matsuyama Central Park",
+    "city": "Matsuyama",
+    "region": "Ehime",
+    "country": "Japan",
+    "countryCode": "JP",
+    "postalCode": "790-0948",
+    "latitude": 33.8093572,
+    "longitude": 132.7459764,
+    "mapsUrl": "https://maps.app.goo.gl/V7Lp8RFuyZVnNKnr9",
+    "mapsEmbed": "https://www.google.com/maps?q=33.8093572,132.7459764&hl=en&z=15&output=embed",
+    "govTourismUrl": "https://www.city.matsuyama.ehime.jp/",
+    "nearbyLandmarks": ["Matsuyama Castle", "Dogo Onsen"]
+  },
+  "googleReview": {
+    "rating": 4.0,
+    "reviewCount": 1816,
+    "syncMonth": "September 2026",
+    "mapsUrl": "https://maps.app.goo.gl/V7Lp8RFuyZVnNKnr9"
+  },
+  "visitorServices": [
+    {
+      "id": "toilets",
+      "title": "Restrooms",
+      "lead": "Facilities are provided so that everyone from small children to the elderly can spend time with peace of mind.",
+      "points": [
+        "Restrooms are installed at major facilities such as Botchan Stadium, Aqua Palette, and the Ehime Prefectural Budokan.",
+        "Some facilities offer multipurpose toilets, ostomate support, and nursing spaces.",
+        "They are distributed throughout the park, so they can be used on the way to your destination."
+      ]
+    },
+    {
+      "id": "parking",
+      "title": "Parking",
+      "lead": "Convenient by car on regular days, but spaces are limited.",
+      "points": [
+        "Normally available 8:00–21:30. Opening areas and fees may change with facility or event operations.",
+        "Some facilities provide priority parking spaces for the elderly and wheelchair users.",
+        "On large events the lot often fills up and nearby roads get congested, so JR or shuttle service is easier to use."
+      ]
+    },
+    {
+      "id": "dining",
+      "title": "Dining & breaks",
+      "lead": "Besides shops and vending machines in the park, restaurants are also near the nearest station.",
+      "points": [
+        "Some sports facilities have kiosks and vending machines for light meals and drinks.",
+        "Eating on the plaza or lawn is allowed within reason; please take all trash home.",
+        "During summer pool use, bring drinks to stay hydrated."
+      ]
+    },
+    {
+      "id": "lodging",
+      "title": "Lodging",
+      "lead": "There is no lodging in the park. Consider staying in the surrounding area.",
+      "points": [
+        "Diverse lodging options are available in central Matsuyama and the Dogo Onsen area.",
+        "On event days, rooms can be hard to book, so plan early.",
+        "Using public transport makes travel from your lodging straightforward."
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": "Shopping & kiosks",
+      "lead": "Drinks, snacks, and daily items for forgotten goods are available in and near the park.",
+      "points": [
+        "Shops and vending machines in the park sell drinks and light meals.",
+        "Convenience stores and supermarkets are near the nearest station.",
+        "Specific items such as stadium goods vary by event."
+      ]
+    },
+    {
+      "id": "fuel",
+      "title": "Fuel & charging",
+      "lead": "Use nearby stations and charging facilities before or after long drives.",
+      "points": [
+        "There are gas stations nearby; hours vary by store.",
+        "EV charging stations are scattered around the area.",
+        "Check in advance about charging equipment inside the park."
+      ]
+    }
+  ],
+  "transport": [
+    {
+      "id": "airport",
+      "mode": "From the airport",
+      "icon": "map-pin",
+      "lead": "Matsuyama Airport is close to the city and connects directly to the park by bus and taxi.",
+      "steps": [
+        "From Matsuyama Airport, a limousine bus to JR Matsuyama Station takes about 15 minutes (varies by operation).",
+        "From JR Matsuyama Station, the Yosan Line to JR Ichitsubo Station takes about 10 minutes, then about a 5-minute walk into the park.",
+        "A direct taxi from the airport to the Ichitsubo area arrives in about 20 minutes."
+      ]
+    },
+    {
+      "id": "train",
+      "mode": "By train",
+      "icon": "train",
+      "lead": "The clearest method, and easy to choose even on event days.",
+      "steps": [
+        "From JR Matsuyama Station, the Yosan Line to JR Ichitsubo Station takes about 10 minutes.",
+        "From Ichitsubo Station, each park facility is about a 5-minute walk.",
+        "Ichitsubo Station is also affectionately nicknamed the 'Baseball (No-Ball) Station.'"
+      ]
+    },
+    {
+      "id": "bus",
+      "mode": "By bus",
+      "icon": "bus",
+      "lead": "You can get close to the stadium from Matsuyama City Station.",
+      "steps": [
+        "From Matsuyama City Station to 'Botchan Stadium Mae' takes about 15 minutes.",
+        "To 'Madonna Stadium Mae' takes about 20 minutes.",
+        "From each stop, major facilities are about a 3-minute walk."
+      ]
+    },
+    {
+      "id": "taxi",
+      "mode": "By taxi",
+      "icon": "car",
+      "lead": "Convenient on days with lots of luggage or when traveling with family.",
+      "steps": [
+        "From JR Matsuyama Station to the Ichitsubo area by taxi takes about 15 minutes.",
+        "From Matsuyama Airport to the Ichitsubo area by taxi takes about 20 minutes.",
+        "Fares vary by distance and road conditions; ask to be dropped at the nearest facility entrance."
+      ]
+    },
+    {
+      "id": "car",
+      "mode": "By car",
+      "icon": "car",
+      "lead": "Convenient for regular use, but public transport is reassuring on large event days.",
+      "steps": [
+        "About 3.5 km / about 15 minutes from Matsuyama IC.",
+        "About 7.5 km / about 20 minutes from Matsuyama Airport.",
+        "Parking is 8:00–21:30. Spaces are limited and conditions change with events."
+      ]
+    }
+  ],
+  "seasons": [
+    {
+      "id": "spring",
+      "name": "Spring",
+      "period": "March–May",
+      "weather": "Temperatures are mild and comfortable on many days, with a pleasant breeze.",
+      "bestFor": "Resting on the lawn, strolling around the stadium exterior, jogging.",
+      "bring": "A light jacket is handy during the day. During pollen season, bring glasses or a mask.",
+      "nature": "Greenery in the park buds, and the area around the sports facilities takes on a bright look."
+    },
+    {
+      "id": "summer",
+      "name": "Summer",
+      "period": "June–August",
+      "weather": "From the rainy season into full summer heat. High humidity and strong midday sun.",
+      "bestFor": "Aqua Palette pools, evening jogging, night games.",
+      "bring": "Hat, drinks, sunscreen. Hydrate frequently to prevent heatstroke.",
+      "nature": "Greenery is at its lush peak and waterside facilities come alive. Watch for sudden evening thunderstorms."
+    },
+    {
+      "id": "autumn",
+      "name": "Autumn",
+      "period": "September–November",
+      "weather": "After lingering heat and typhoons, clear and comfortable days increase.",
+      "bestFor": "Architecture & photography courses, watching competitions, relaxing on the lawn.",
+      "bring": "Mornings and evenings cool down, so a jacket is reassuring. Watch typhoon movements.",
+      "nature": "Many clear, high-sky days, ideal for photographing tiled roofs and timber framing."
+    },
+    {
+      "id": "winter",
+      "name": "Winter",
+      "period": "December–February",
+      "weather": "A Seto Inland Sea climate with little snow and many dry, clear days.",
+      "bestFor": "Strolling the stadium exterior on clear days, visiting the museum, calm daytime walks.",
+      "bring": "Sunny spots are warm, but shade and evenings get cold. Bring gloves and a scarf.",
+      "nature": "Enjoy the expression of deciduous trees and the contrast of sky and facilities on clear days."
+    }
+  ],
+  "itineraries": {
+    "personas": [
+      {
+        "id": "family",
+        "title": "Family course",
+        "forWhom": "Families with small children",
+        "pace": "Relaxed, with plenty of breaks",
+        "duration": "About 3 hours",
+        "summary": "A plan that makes the pool the star while easily enjoying the stadium and museum.",
+        "stops": [
+          "Play in the water at Aqua Palette Matsuyama",
+          "Rest on the lawn or a bench in the park",
+          "Botchan Stadium exterior and large roof",
+          "No-Ball Museum (open Sat/Sun/holidays)"
+        ]
+      },
+      {
+        "id": "photo",
+        "title": "Photography & nature course",
+        "forWhom": "Those who enjoy architectural and landscape photography",
+        "pace": "Leisurely, with more walking",
+        "duration": "About 2 hours",
+        "summary": "Tiles, timber, stone walls, and the stadium's large roof. Capture the contrast of materials and scale.",
+        "stops": [
+          "Tiled roof and timber frame of the Ehime Prefectural Budokan",
+          "Greenery and water around Aqua Palette",
+          "Botchan Stadium large roof (front lower section)",
+          "View of the stadium from the Ichitsubo Station platform",
+          "Bridges and waterways in the park"
+        ]
+      },
+      {
+        "id": "accessible",
+        "title": "Low-exertion & barrier-free course",
+        "forWhom": "Elderly visitors and those with mobility concerns",
+        "pace": "Short distances, mostly flat",
+        "duration": "About 60 minutes",
+        "summary": "Using the flat route from JR Ichitsubo Station, tour the facility exteriors without strain.",
+        "stops": [
+          "Move flat from JR Ichitsubo Station toward the park",
+          "Botchan Stadium front (with multipurpose toilet)",
+          "No-Ball Museum (low-step route)",
+          "Rest as needed on benches and break spaces"
+        ]
+      }
+    ],
+    "general": [
+      {
+        "id": "half-day",
+        "title": "Recommended half-day plan",
+        "duration": "About 3 hours",
+        "summary": "A starter example centered on the stadium exterior and museum, for first-time visitors.",
+        "stops": [
+          "Alight at JR Ichitsubo Station; move using the stadium roof as a landmark",
+          "Botchan Stadium exterior",
+          "No-Ball Museum",
+          "A break inside the park"
+        ]
+      },
+      {
+        "id": "full-day",
+        "title": "Recommended full-day plan",
+        "duration": "About 6 hours",
+        "summary": "A plan to savor architecture and water fully, including the pool and budokan.",
+        "stops": [
+          "Morning: play in the water at Aqua Palette",
+          "Noon: rest and lunch in the park",
+          "Afternoon: Botchan Stadium and the museum",
+          "Evening: Ehime Prefectural Budokan architecture and a park stroll"
+        ]
+      }
+    ]
+  },
+  "responsibility": {
+    "intro": "Matsuyama Central Park is both a place for citizens' sports and relaxation and a cherished green space of the city. To ensure everyone can spend time comfortably, please cooperate with the following.",
+    "principles": [
+      { "title": "Take your trash home", "text": "To keep the park beautiful, please take any trash with you. For items that need sorting, check the nearest facility guidance." },
+      { "title": "Protect facilities and lawns", "text": "Access to the ground and lawn follows usage rules. Please treat facility equipment with care." },
+      { "title": "Consider wild flora and fauna", "text": "Small birds and insects live in the park's greenery. Do not feed them; enjoy quiet observation." },
+      { "title": "Manners during events", "text": "At games and events, please act with consideration for other visitors and nearby residents." },
+      { "title": "Heatstroke & disaster preparedness", "text": "In summer, hydrate and rest frequently. Pay attention to weather information and facility notices, and avoid overexertion." },
+      { "title": "Consideration for barrier-free", "text": "Let those who need benches, multipurpose toilets, and priority parking use them easily." }
+    ],
+    "scienceNote": "Greenery and trees ease summer heat and serve as habitats for living things as part of the city's ecosystem. This park, where sports and nature sit side by side, is also a place for citizens' health and environmental learning."
+  },
+  "heritage": [
+    {
+      "id": "origin",
+      "eyebrow": "Background & history 01",
+      "title": "A comprehensive sports park was born on the Ichitsubo land",
+      "text": "The Ichitsubo district where Matsuyama Central Park stands was once a key transportation hub south of the city center. In the 1990s, under a plan to consolidate the city's sports and recreation functions, development proceeded as a comprehensive sports park centered on a stadium. In 1994 Botchan Stadium opened, becoming a venue for professional and high-school baseball and citizens' tournaments."
+    },
+    {
+      "id": "baseball-literature",
+      "eyebrow": "Background & history 02",
+      "title": "Where baseball and literature intersect, unique to Matsuyama",
+      "text": "Matsuyama is the town where Masaoka Shiki was born and baseball was spread across Japan. The pen name 'No-Ball' used by Shiki, and the facility name from Natsume Soseki's novel 'Botchan,' weave the history of literature into the park's scenery. There is a rare backdrop where two cultures—sports and literature—overlap in one place."
+    },
+    {
+      "id": "region-history",
+      "eyebrow": "Background & history 03",
+      "title": "Connection with the castle town and hot-spring town",
+      "text": "To the north of the park remain memories of the Iyo-Matsuyama domain's castle town, and to the east lies Dogo Onsen, one of Japan's premier hot-spring resorts. The old town life and today's sports bustle are a continuation of the same town's history. Visiting Matsuyama Central Park is also a walk through this region's time."
+    },
+    {
+      "id": "legends",
+      "eyebrow": "Tradition & episodes 04",
+      "title": "Stories embedded in the names",
+      "text": "'Botchan,' 'Madonna,' 'No-Ball'—each facility name carries episodes of literary characters and people who loved baseball. A monument honoring Kondo Heitaro, who contributed to baseball development in Taiwan, also stands in the park, conveying a story of Matsuyama's regional history reaching across the sea."
+    }
+  ],
+  "navigation": [
+    { "label": "Facilities", "href": "/facilities/" },
+    { "label": "Baseball stories", "href": "/stories/" },
+    { "label": "Things to do", "href": "/visit/" },
+    { "label": "Access", "href": "/access/" }
+  ],
+  "quickFacts": [
+    { "label": "Nearest station", "value": "JR Ichitsubo Station", "detail": "About 5 min walk", "icon": "train" },
+    { "label": "Park parking", "value": "8:00–21:30", "detail": "Varies on event days", "icon": "clock" },
+    { "label": "Park area", "value": "41.19 hectares", "detail": "Comprehensive sports park", "icon": "field" },
+    { "label": "Museum", "value": "Free admission", "detail": "Open Sat/Sun/holidays", "icon": "museum" }
+  ],
+  "experiences": [
+    {
+      "title": "Trace baseball culture",
+      "text": "Encounter Matsuyama's unique stories, from Masaoka Shiki to Ehime high-school baseball, pro All-Star games, and ties with Taiwan baseball.",
+      "icon": "baseball",
+      "href": "/stories/"
+    },
+    {
+      "title": "Feel the game-day atmosphere",
+      "text": "Botchan Stadium seating 30,000 and Madonna Stadium supporting local games. Enjoy the excitement of stadium architecture and watching live.",
+      "icon": "ticket",
+      "href": "/facilities/#botchan-stadium"
+    },
+    {
+      "title": "Play with water and sports",
+      "text": "Centered on Aqua Palette with its 50m pool and lazy river, families can spend half a day here.",
+      "icon": "water",
+      "href": "/facilities/#aqua-palette"
+    },
+    {
+      "title": "Walk architecture and scenery",
+      "text": "Photograph the stadium's large roof, the timber and stone of the Ehime Prefectural Budokan, and the urban landscape where station and sports facilities sit close together.",
+      "icon": "architecture",
+      "href": "/visit/#architecture-route"
+    }
+  ],
+  "facilities": [
+    {
+      "id": "botchan-stadium",
+      "name": "Botchan Stadium",
+      "category": "Main baseball stadium",
+      "short": "The symbol of Matsuyama Central Park — a baseball stadium seating 30,000.",
+      "description": "99.1 meters down the lines and 122 meters to center. The infield is mixed black-soil, the outfield natural grass, used widely from pro baseball to high-school baseball and regional tournaments. Its large overhanging roof and blue seating define the park's landscape.",
+      "highlights": ["Capacity 30,000", "Natural grass outfield", "Night lighting & scoreboard", "Adjacent baseball museum"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (except holidays), year-end and New Year",
+      "fee": "Admission and seating vary by game or event",
+      "bestFor": "Watching baseball, stadium architecture, photography",
+      "icon": "baseball",
+      "image": "/images/hero-960.webp",
+      "imageLarge": "/images/hero-1800.webp",
+      "alt": "Botchan Stadium with its large circular roof and exterior",
+      "featured": true
+    },
+    {
+      "id": "baseball-museum",
+      "name": "No-Ball Museum",
+      "category": "Baseball history museum",
+      "short": "A free museum conveying Ehime/Matsuyama baseball culture from Shiki to today.",
+      "description": "A museum on the front of Botchan Stadium. Through exhibits on Masaoka Shiki, Kondo Heitaro, Ehime high-school baseball, pro All-Star games, and the Tokyo Yakult Swallows autumn camp, it introduces the journey of baseball kingdom Ehime.",
+      "highlights": ["Free admission", "Open Sat/Sun/holidays", "High-school baseball highlights theater", "Virtual pitching"],
+      "hours": "9:00–17:00 (last entry 16:30)",
+      "closed": "Weekdays, year-end and New Year",
+      "fee": "Free",
+      "bestFor": "Baseball history, Masaoka Shiki, exchange with Taiwan",
+      "icon": "museum",
+      "image": "/images/botchan-stadium-night-1200.webp",
+      "imageLarge": "/images/botchan-stadium-night-2200.webp",
+      "alt": "Botchan Stadium field and seating lit by night lighting",
+      "featured": true
+    },
+    {
+      "id": "aqua-palette",
+      "name": "Aqua Palette Matsuyama",
+      "category": "Indoor & outdoor pools",
+      "short": "A pool where competitive swimming and family water play meet in one facility.",
+      "description": "Besides an indoor 50-meter pool, it has a lazy river, a health-promotion pool, and a toddler pool. In summer the outdoor area offers a 25-meter pool, a beach pool, a toddler pool, and a water slide.",
+      "highlights": ["Indoor 50m pool", "Lazy river", "Toddler area", "Outdoor water slide"],
+      "hours": "9:00–21:00 (last entry 20:00)",
+      "closed": "Closed days vary by operational notice",
+      "fee": "Paid; varies by time and age",
+      "bestFor": "Families, lap swimming, summer half-day plan",
+      "icon": "water",
+      "image": "/images/aqua-palette-960.webp",
+      "imageLarge": "/images/aqua-palette-1800.webp",
+      "alt": "Aqua Palette Matsuyama building and outdoor slide beyond the greenery",
+      "featured": true
+    },
+    {
+      "id": "ehime-budokan",
+      "name": "Ehime Prefectural Budokan",
+      "category": "Martial arts & multi-purpose",
+      "short": "A top architectural spot in the park, using local timber and traditional materials.",
+      "description": "The main dojo is about 60 m × 40 m and can hold eight judo or kendo courts. Built with prefectural cedar large-frame construction, Kikuma tiles, and Oshima stone, the building combines the strength of a castle with the lightness of modern timber architecture.",
+      "highlights": ["Main arena up to ~6,500", "Prefectural cedar timber frame", "Kikuma tiles & Oshima stone", "Judo/Kendo/sub-arenas"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (next day if a holiday)",
+      "fee": "Varies by event or use",
+      "bestFor": "Architecture appreciation, martial arts events, photography",
+      "icon": "architecture",
+      "image": "/images/ehime-budokan-960.webp",
+      "imageLarge": "/images/ehime-budokan-1800.webp",
+      "alt": "Ehime Prefectural Budokan with its large tiled roof, stone walls, and timber frame",
+      "featured": true
+    },
+    {
+      "id": "madonna-stadium",
+      "name": "Madonna Stadium",
+      "category": "Sub baseball stadium",
+      "short": "A sub stadium for regional tournaments, women's baseball, and softball.",
+      "description": "99.1 meters down the lines and 122 meters to center. The infield is mixed black-soil, the outfield artificial turf, used for hardball, softball, and softball. Seating is about 2,000.",
+      "highlights": ["Capacity 2,000", "Artificial turf outfield", "Hard/soft/youth baseball", "Adjacent to Botchan Stadium"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (except holidays), year-end and New Year",
+      "fee": "Varies by event or use",
+      "bestFor": "Regional tournaments, women's baseball, stadium tour",
+      "icon": "baseball",
+      "image": "/images/madonna-stadium-panorama-1200.webp",
+      "imageLarge": "/images/madonna-stadium-panorama-2000.webp",
+      "alt": "Panorama of Madonna Stadium field and seating",
+      "featured": false
+    },
+    {
+      "id": "tennis-courts",
+      "name": "Tennis Courts",
+      "category": "Outdoor courts",
+      "short": "All-weather sand-filled artificial turf, 16 courts with night lighting.",
+      "description": "Sixteen courts for hard and soft tennis, with a clubhouse. Changing rooms, lockers, and meeting rooms support everything from daily practice to tournaments.",
+      "highlights": ["16 artificial-turf courts", "Night lighting", "Clubhouse", "Hard & soft tennis"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (except holidays), year-end and New Year",
+      "fee": "Varies by booking and use category",
+      "bestFor": "Tennis practice, regional tournaments",
+      "icon": "tennis",
+      "image": "",
+      "imageLarge": "",
+      "alt": "",
+      "featured": false
+    },
+    {
+      "id": "sports-field",
+      "name": "Sports Field",
+      "category": "Multi-purpose ground",
+      "short": "A ground for soccer, softball, rugby, and more.",
+      "description": "A 115 m × 153 m masago-soil ground with night lighting, used for soccer, softball, youth hardball, rugby, gateball, and ground golf.",
+      "highlights": ["115m×153m", "Night lighting", "Multi-purpose use", "Group booking"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (except holidays), year-end and New Year",
+      "fee": "Varies by booking and use category",
+      "bestFor": "Group sports, community exchange",
+      "icon": "field",
+      "image": "",
+      "imageLarge": "",
+      "alt": "",
+      "featured": false
+    },
+    {
+      "id": "indoor-ground",
+      "name": "Indoor Sports Arena",
+      "category": "Artificial-turf arena",
+      "short": "An indoor space usable regardless of weather, for baseball practice and many sports.",
+      "description": "An about 40 m × 50 m artificial-turf arena for baseball/softball practice, futsal, handball, hockey, and gateball.",
+      "highlights": ["~40m×50m", "Artificial turf", "Rainy-day practice", "Multi-sport"],
+      "hours": "9:00–21:00",
+      "closed": "Mondays (except holidays), year-end and New Year",
+      "fee": "Varies by booking and use category",
+      "bestFor": "Rainy-day practice, group use",
+      "icon": "indoor",
+      "image": "",
+      "imageLarge": "",
+      "alt": "",
+      "featured": false
+    },
+    {
+      "id": "deai-field",
+      "name": "Deai Field",
+      "category": "Multi-purpose stadium",
+      "short": "A multi-purpose stadium with a 400m track and spectator seating.",
+      "description": "Equipped with a 400m track and spectator seating for up to about 5,000, used for competitions and large events. During events, park circulation and parking conditions may change.",
+      "highlights": ["400m track", "Up to ~5,000 seats", "Competitions & events", "Located on the park's west side"],
+      "hours": "Varies by event or use",
+      "closed": "Check the event notice",
+      "fee": "Varies by event or use",
+      "bestFor": "Competitions, large events",
+      "icon": "track",
+      "image": "",
+      "imageLarge": "",
+      "alt": "",
+      "featured": false
+    }
+  ],
+  "stories": [
+    {
+      "id": "shiki",
+      "eyebrow": "Story 01",
+      "title": "The baseball Masaoka Shiki brought to Matsuyama",
+      "text": "Masaoka Shiki, who encountered baseball in Tokyo, is said to have brought a bat and ball back to his hometown of Matsuyama and taught students at Matsuyama Middle School. Using the childhood name 'Noboru,' he also adopted the pen name 'Yakyu (no-ball).' Through translated terms such as batter, runner, walk, fastball, and fly ball, and haiku and tanka on baseball, he contributed to its spread, and was inducted into the Baseball Hall of Fame in 2002."
+    },
+    {
+      "id": "name",
+      "eyebrow": "Story 02",
+      "title": "The 'Botchan' stadium in a literary town",
+      "text": "The stadium name comes from Natsume Soseki's novel 'Botchan,' set in Matsuyama. The park also has 'Madonna Stadium' and 'No-Ball Museum,' and names typical of literary Matsuyama blend into the scenery of sports facilities."
+    },
+    {
+      "id": "kingdom",
+      "eyebrow": "Story 03",
+      "title": "A place connecting the memory of baseball kingdom Ehime",
+      "text": "Ehime has long nurtured a local baseball culture, starting with high-school baseball. The museum lets you learn its depth through a timeline from the Meiji era to modern times, the history of the prefecture's high schools, footage of famous games, and materials on prefecture-born players and professional baseball."
+    },
+    {
+      "id": "kondo",
+      "eyebrow": "Story 04",
+      "title": "Kondo Heitaro and the ties to Taiwan baseball",
+      "text": "Kondo Heitaro, a baseball instructor from Matsuyama, greatly contributed not only to Japan but also to baseball development in Taiwan. A commemorative monument stands in the park, and the museum has an exhibit corner introducing his achievements. It is an important story of Matsuyama's regional history reaching across the sea."
+    },
+    {
+      "id": "allstar",
+      "eyebrow": "Story 05",
+      "title": "The stadium memory left by three All-Star Games",
+      "text": "Botchan Stadium hosted the professional All-Star Game in 2002, 2012, and 2022. The museum's commemorative exhibit traces the fervor of Matsuyama, which repeatedly welcomed the 'dream festival' at a local stadium."
+    }
+  ],
+  "routes": [
+    {
+      "id": "baseball",
+      "name": "Baseball culture course",
+      "duration": "About 90 min",
+      "distance": "About 1.7km walk",
+      "recommendation": "Recommended on Sat/Sun/holidays",
+      "summary": "For baseball fans visiting for the first time. Tour the stadium architecture and museum in a sensible order.",
+      "icon": "baseball",
+      "stops": ["JR Ichitsubo Station · Shiki Baseball Hall of Fame monument", "Botchan Stadium front", "No-Ball Museum", "Madonna Stadium", "Ehime Prefectural Budokan exterior"]
+    },
+    {
+      "id": "family",
+      "name": "Family half-day course",
+      "duration": "About 3 hours",
+      "distance": "Mainly within the park",
+      "recommendation": "For summer & holidays",
+      "summary": "A family plan that makes the pool the star while also enjoying the stadium and museum.",
+      "icon": "family",
+      "stops": ["Aqua Palette Matsuyama", "Park rest spaces", "Botchan Stadium exterior", "No-Ball Museum"]
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture & photography course",
+      "duration": "About 2 hours",
+      "distance": "About 2.0km walk",
+      "recommendation": "Clear afternoons recommended",
+      "summary": "Tiles, timber, stone walls, and the stadium's large roof. Capture the contrast of materials and scale.",
+      "icon": "camera",
+      "stops": ["Ehime Prefectural Budokan", "Around Aqua Palette", "Botchan Stadium large roof", "View from the Ichitsubo Station platform", "Bridges and waterways in the park"]
+    },
+    {
+      "id": "running",
+      "name": "Jogging course",
+      "duration": "About 30–60 min",
+      "distance": "One loop about 2.4km",
+      "recommendation": "Mornings/evenings recommended",
+      "summary": "A course connecting the outer ring of major facilities, feeling the scale of the entire sports park.",
+      "icon": "walk",
+      "stops": ["Botchan Stadium", "Madonna Stadium", "Tennis Courts", "Sports Field", "Ehime Prefectural Budokan"]
+    }
+  ],
+  "access": [
+    {
+      "id": "train",
+      "title": "By JR train",
+      "lead": "The clearest method, and easy to choose even on event days.",
+      "steps": ["JR Matsuyama Station to JR Ichitsubo Station about 10 min", "Ichitsubo Station to each park facility about 5 min walk", "Ichitsubo Station is also nicknamed the 'Baseball (No-Ball) Station'"],
+      "icon": "train"
+    },
+    {
+      "id": "bus",
+      "title": "By bus",
+      "lead": "You can get close to the stadium from Matsuyama City Station.",
+      "steps": ["Matsuyama City Station to 'Botchan Stadium Mae' about 15 min", "To 'Madonna Stadium Mae' about 20 min", "From each stop, major facilities about 3 min walk"],
+      "icon": "bus"
+    },
+    {
+      "id": "car",
+      "title": "By car",
+      "lead": "Convenient for regular use, but public transport is reassuring on large event days.",
+      "steps": ["Matsuyama IC about 3.5km / about 15 min", "Matsuyama Airport about 7.5km / about 20 min", "Parking is 8:00–21:30. Spaces are limited and conditions change with events"],
+      "icon": "car"
+    }
+  ],
+  "visitTips": [
+    { "title": "Center on the museum", "text": "The No-Ball Museum is open Sat/Sun/holidays. Aligning the baseball culture course with open days enriches the content.", "icon": "museum" },
+    { "title": "Use game days and regular days differently", "text": "Game days offer excitement and lighting. Regular days are calmer for architecture and park scenery, and good for photography.", "icon": "ticket" },
+    { "title": "Summer: hydration and sun protection", "text": "Walking between sports facilities includes stretches with little shade. A hat and drinks are reassuring.", "icon": "water" },
+    { "title": "Prioritize JR on large event days", "text": "Parking congestion and route changes are common, so walking from Ichitsubo Station is the clearer choice.", "icon": "train" }
+  ],
+  "faqs": [
+    {
+      "question": "Is this the same place as Matsuyama General Park?",
+      "answer": "They are different parks. Matsuyama Central Park is a comprehensive sports park with Botchan Stadium, Aqua Palette, and the Ehime Prefectural Budokan. Matsuyama General Park centers on views and strolling."
+    },
+    {
+      "question": "Can I freely tour inside Botchan Stadium?",
+      "answer": "The exterior and surroundings can be seen on a park stroll, but entry to the seats and field depends on games, events, and facility use. The museum is on the stadium's front side."
+    },
+    {
+      "question": "When is the baseball history museum open?",
+      "answer": "It is open Saturdays, Sundays, and holidays from 9:00 to 17:00, with last entry at 16:30. Admission is free. It is closed over the year-end and New Year."
+    },
+    {
+      "question": "Which transport is convenient for a first visit?",
+      "answer": "JR is clearest, as it is about a 5-minute walk from JR Ichitsubo Station. On large events, parking gets crowded and public transport is better."
+    },
+    {
+      "question": "How much time should I plan for?",
+      "answer": "About 60–90 minutes if focusing on the stadium exterior and museum. Half a day is recommended if combining pool use or architectural strolling."
+    },
+    {
+      "question": "Please tell me the parking fees and hours at Matsuyama Central Park.",
+      "answer": "Parking is normally available 8:00 to 21:30. Fees and opening areas may change with facility or event operations. On large events the lot often fills and nearby areas get congested, so access from JR Ichitsubo Station is recommended."
+    }
+  ],
+  "credits": [
+    {
+      "file": "Botchan Stadium exterior",
+      "author": "City of Matsuyama",
+      "license": "Creative Commons Attribution 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:坊っちゃんスタジアム_(1).jpg",
+      "usage": "Homepage, facility guide, shared images. Cropping and color adjustment applied."
+    },
+    {
+      "file": "Botchan Stadium and JR Ichitsubo Station",
+      "author": "CT-May",
+      "license": "Creative Commons Zero",
+      "source": "https://commons.wikimedia.org/wiki/File:Ichitsubo_Station_and_Botchan_Stadium_20250422_(1).jpg",
+      "usage": "Access guide. Resized."
+    },
+    {
+      "file": "Aqua Palette Matsuyama",
+      "author": "CT-May",
+      "license": "Creative Commons Zero",
+      "source": "https://commons.wikimedia.org/wiki/File:Aqua_Palette_Matsuyama_20250422.jpg",
+      "usage": "Facility guide. Resized."
+    },
+    {
+      "file": "Ehime Prefectural Budokan",
+      "author": "Carpawa",
+      "license": "Public Domain",
+      "source": "https://commons.wikimedia.org/wiki/File:EhimeBudokan.jpg",
+      "usage": "Facility guide, architecture course. Resized."
+    },
+    {
+      "file": "Madonna Stadium panorama",
+      "author": "Carpawa",
+      "license": "Public Domain",
+      "source": "https://commons.wikimedia.org/wiki/File:マドンナスタジアムパノラマ.jpg",
+      "usage": "Facility guide. Resized."
+    },
+    {
+      "file": "Botchan Stadium night panorama",
+      "author": "Carpawa",
+      "license": "Public Domain",
+      "source": "https://commons.wikimedia.org/wiki/File:坊っちゃんスタジアムパノラマ2010.jpg",
+      "usage": "Baseball culture & museum intro. Resized."
+    }
+  ]
+}
