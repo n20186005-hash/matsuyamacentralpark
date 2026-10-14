@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Access -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/access/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/access/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/access/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/access/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/access/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/access/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/access/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/access/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/access/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/access/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/access/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/access/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/access/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/access/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/access/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Facilities -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/facilities/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/facilities/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/facilities/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/facilities/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/facilities/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/facilities/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/facilities/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Parking (new) -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/parking/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/parking/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/parking/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/parking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/parking/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/parking/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/parking/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/parking/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/parking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/parking/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/parking/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/parking/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/parking/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/parking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/parking/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Botchan Stadium (new) -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/botchan-stadium/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/botchan-stadium/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/botchan-stadium/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/botchan-stadium/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/botchan-stadium/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Park map (new) -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/park-map/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/park-map/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/park-map/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/park-map/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/park-map/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/park-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/park-map/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Stories -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/stories/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/stories/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/stories/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/stories/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/stories/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/stories/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/stories/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/stories/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/stories/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/stories/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/stories/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/stories/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/stories/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/stories/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/stories/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Visit -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/visit/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/visit/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/visit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/visit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/visit/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/visit/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/visit/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/visit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/visit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/visit/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/visit/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/visit/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/visit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/visit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/visit/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Credits -->
+  <url>
+    <loc>https://matsuyamacentralpark.com/credits/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/credits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/credits/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/credits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/credits/"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/zh-Hant/credits/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/credits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/credits/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/credits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/credits/"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://matsuyamacentralpark.com/en/credits/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://matsuyamacentralpark.com/credits/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://matsuyamacentralpark.com/zh-Hant/credits/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matsuyamacentralpark.com/en/credits/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://matsuyamacentralpark.com/credits/"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

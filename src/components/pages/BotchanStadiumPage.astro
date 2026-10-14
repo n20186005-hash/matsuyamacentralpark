@@ -1,0 +1,129 @@
+---
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import Icon from '../../components/Icon.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { IconName } from '../../data/site';
+import PageHero from '../PageHero.astro';
+import SectionHeading from '../SectionHeading.astro';
+import SourcesSection from '../SourcesSection.astro';
+import PhotoCredit from '../PhotoCredit.astro';
+
+interface Props {
+  locale: 'ja' | 'zh-Hant' | 'en';
+}
+const { locale } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+const localize = (p: string) => localizePath(p, locale);
+
+const facts = [
+  { label: t('botchan.capacity'), value: t('botchan.capacityValue'), icon: 'baseball' },
+  { label: t('botchan.opened'), value: t('botchan.openedValue'), icon: 'museum' },
+  { label: t('botchan.nameOrigin'), value: t('botchan.nameOriginValue'), icon: 'field' },
+];
+const faqs = [
+  { q: t('botchan.faq.q1'), a: t('botchan.faq.a1') },
+  { q: t('botchan.faq.q2'), a: t('botchan.faq.a2') },
+  { q: t('botchan.faq.q3'), a: t('botchan.faq.a3') },
+];
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('botchan.page.title')}
+  description={t('botchan.page.description')}
+  currentPath={Astro.url.pathname}
+  bodyClass="botchan-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('botchan.hero.eyebrow')}
+    title={t('botchan.hero.title')}
+    lead={t('botchan.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('botchan.hero.eyebrow')}
+    tone="blue"
+  />
+
+  <section class="section container" id="intro">
+    <SectionHeading eyebrow={t('botchan.intro.eyebrow')} title={t('botchan.intro.title')} text={t('botchan.intro.text')} />
+  </section>
+
+  <section class="section container" id="facts">
+    <SectionHeading eyebrow={t('botchan.facts.eyebrow')} title={t('botchan.facts.title')} />
+    <div class="info-cards">
+      {facts.map((f) => (
+        <article class="info-card">
+          <span class="info-card__icon"><Icon name={f.icon as IconName} size={22} /></span>
+          <p class="info-card__label">{f.label}</p>
+          <p class="info-card__value">{f.value}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container" id="access">
+    <SectionHeading eyebrow={t('botchan.access.eyebrow')} title={t('botchan.access.title')} text={t('botchan.access.text')} />
+  </section>
+
+  <section class="section section--blue" id="games">
+    <div class="container">
+      <SectionHeading eyebrow={t('botchan.games.eyebrow')} title={t('botchan.games.title')} text={t('botchan.games.text')} />
+    </div>
+  </section>
+
+  <section class="section section--cream" id="faq">
+    <div class="container faq-layout">
+      <div class="faq-layout__heading">
+        <SectionHeading eyebrow={t('common.questions')} title={t('botchan.faq.title')} />
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}<Icon name="chevron" size={22} /></summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('botchan.cta.label')}</p>
+        <h2>{t('botchan.cta.title')}</h2>
+        <p>{t('botchan.cta.text')}</p>
+        <a class="button button--solid" href={localize('/facilities/')}><Icon name="arrow" size={18} />{t('botchan.cta.button')}</a>
+      </div>
+    </div>
+  </section>
+
+  <SourcesSection locale={locale} />
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>
+
+<style>
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .info-card {
+    background: var(--color-white, #fff);
+    border: 1px solid color-mix(in srgb, var(--color-ink, #14213d) 12%, transparent);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .info-card__icon {
+    display: inline-flex;
+    color: var(--color-blue, #1b6ec2);
+    margin-bottom: 10px;
+  }
+  .info-card__label { margin: 0 0 6px; font-size: 0.85rem; color: color-mix(in srgb, var(--color-ink, #14213d) 60%, transparent); }
+  .info-card__value { margin: 0; font-size: 1.1rem; font-weight: 700; line-height: 1.6; }
+</style>

@@ -104,6 +104,13 @@ const detailLinks: Record<string, { href: string; label: string }> = {
     </div>
   </section>
 
+  <section class="section container" id="botchan-link">
+    <SectionHeading eyebrow={t('botchan.hero.eyebrow')} title={t('botchan.hero.title')} text={t('botchan.intro.text')} />
+    <a class="button button--solid" href={localizePath('/botchan-stadium/', locale)}>
+      {t('botchan.cta.button')} <Icon name="arrow" size={18} />
+    </a>
+  </section>
+
   <section class="section--cta">
     <div class="container cta-grid">
       <div>

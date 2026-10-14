@@ -8,6 +8,7 @@ import TransportSection from '../../components/TransportSection.astro';
 import ServicesSection from '../../components/ServicesSection.astro';
 import { getContent } from '../../i18n/content';
 import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
 import type { Locale } from '../../i18n/config';
 
 interface Props {
@@ -99,6 +100,9 @@ const t = useTranslations(locale);
       <article class="parking-notice"><span class="parking-notice__icon"><Icon name="ticket" size={22} /></span><div><h3>{t('access.parking.n2h')}</h3><p>{t('access.parking.n2p')}</p></div></article>
       <article class="parking-notice"><span class="parking-notice__icon"><Icon name="route" size={22} /></span><div><h3>{t('access.parking.n3h')}</h3><p>{t('access.parking.n3p')}</p></div></article>
     </div>
+    <a class="button button--ghost" href={localizePath('/parking/', locale)}>
+      {t('parking.cta.button')} <Icon name="arrow" size={18} />
+    </a>
   </section>
 
   <TransportSection locale={locale} />

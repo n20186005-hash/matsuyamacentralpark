@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://matsuyamacentralpark.com/sitemap.xml

@@ -31,7 +31,8 @@ const t = useTranslations(locale);
 <BaseLayout
   locale={locale}
   availableLocales={['ja', 'zh-Hant', 'en']}
-  title={content.site.name}
+  title={t('home.pageTitle')}
+  exactTitle
   description={t('home.metaDescription')}
   image="/images/og.jpg"
   currentPath={Astro.url.pathname}
@@ -47,6 +48,21 @@ const t = useTranslations(locale);
     current={t('home.hero.eyebrow')}
     tone="blue"
   />
+
+  <nav class="section container home-quicknav" aria-label={`${t('quicknav.parking')}・${t('quicknav.access')}・${t('quicknav.map')}`}>
+    <a class="home-quicknav__item" href={localizePath('/parking/', locale)}>
+      <Icon name="car" size={22} />
+      <span>{t('quicknav.parking')}</span>
+    </a>
+    <a class="home-quicknav__item" href={localizePath('/access/', locale)}>
+      <Icon name="train" size={22} />
+      <span>{t('quicknav.access')}</span>
+    </a>
+    <a class="home-quicknav__item" href={localizePath('/park-map/', locale)}>
+      <Icon name="map-pin" size={22} />
+      <span>{t('quicknav.map')}</span>
+    </a>
+  </nav>
 
   <section class="section container" id="intro">
     <SectionHeading eyebrow={t('home.intro.eyebrow')} title={t('home.intro.title')} text={t('home.intro.text')} />
@@ -87,7 +103,7 @@ const t = useTranslations(locale);
       ))}
     </div>
     <a class="button button--ghost" href={localizePath('/facilities/', locale)}>
-      {t('home.facilities.all')} <Icon name="arrow" size={18} />
+      {t('common.viewAll')} <Icon name="arrow" size={18} />
     </a>
   </section>
 
@@ -174,3 +190,38 @@ const t = useTranslations(locale);
 
   <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
 </BaseLayout>
+
+<style>
+  .home-quicknav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: -36px;
+    position: relative;
+    z-index: 2;
+  }
+  .home-quicknav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 22px 16px;
+    background: var(--color-white, #fff);
+    border: 1px solid color-mix(in srgb, var(--color-ink, #14213d) 12%, transparent);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(20, 33, 61, 0.08);
+    color: var(--color-ink, #14213d);
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .home-quicknav__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(20, 33, 61, 0.14);
+  }
+  .home-quicknav__item :global(svg) { color: var(--color-blue, #1b6ec2); }
+  @media (max-width: 640px) {
+    .home-quicknav { grid-template-columns: 1fr; margin-top: -20px; }
+  }
+</style>

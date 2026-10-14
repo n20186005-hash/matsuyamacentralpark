@@ -1,0 +1,16 @@
+---
+import BotchanStadiumPage from '../../../components/pages/BotchanStadiumPage.astro';
+import type { Locale } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh-Hant' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang as Locale;
+---
+
+<BotchanStadiumPage locale={locale} />

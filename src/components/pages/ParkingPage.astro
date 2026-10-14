@@ -1,0 +1,136 @@
+---
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import Icon from '../../components/Icon.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { IconName } from '../../data/site';
+import PageHero from '../PageHero.astro';
+import SectionHeading from '../SectionHeading.astro';
+import SourcesSection from '../SourcesSection.astro';
+import PhotoCredit from '../PhotoCredit.astro';
+
+interface Props {
+  locale: 'ja' | 'zh-Hant' | 'en';
+}
+const { locale } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+const localize = (p: string) => localizePath(p, locale);
+
+const hours = [
+  { h: t('parking.h1.h'), p: t('parking.h1.p'), icon: 'clock' },
+  { h: t('parking.h2.h'), p: t('parking.h2.p'), icon: 'ticket' },
+  { h: t('parking.h3.h'), p: t('parking.h3.p'), icon: 'route' },
+];
+const faqs = [
+  { q: t('parking.faq.q1'), a: t('parking.faq.a1') },
+  { q: t('parking.faq.q2'), a: t('parking.faq.a2') },
+  { q: t('parking.faq.q3'), a: t('parking.faq.a3') },
+];
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('parking.page.title')}
+  description={t('parking.page.description')}
+  currentPath={Astro.url.pathname}
+  bodyClass="parking-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('parking.hero.eyebrow')}
+    title={t('parking.hero.title')}
+    lead={t('parking.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('parking.hero.eyebrow')}
+    tone="blue"
+  />
+
+  <section class="section container" id="intro">
+    <SectionHeading eyebrow={t('parking.intro.eyebrow')} title={t('parking.intro.title')} text={t('parking.intro.text')} />
+  </section>
+
+  <section class="section container" id="hours">
+    <SectionHeading eyebrow={t('parking.hours.eyebrow')} title={t('parking.hours.title')} text={t('parking.hours.text')} />
+    <div class="info-cards">
+      {hours.map((c) => (
+        <article class="info-card">
+          <span class="info-card__icon"><Icon name={c.icon as IconName} size={22} /></span>
+          <h3>{c.h}</h3>
+          <p>{c.p}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container" id="zones">
+    <SectionHeading eyebrow={t('parking.zones.eyebrow')} title={t('parking.zones.title')} text={t('parking.zones.text')} />
+  </section>
+
+  <section class="section section--blue" id="event">
+    <div class="container">
+      <SectionHeading eyebrow={t('parking.event.eyebrow')} title={t('parking.event.title')} text={t('parking.event.text')} />
+    </div>
+  </section>
+
+  <section class="section container" id="map">
+    <SectionHeading eyebrow={t('parking.map.eyebrow')} title={t('parking.map.title')} text={t('parking.map.text')} />
+    <a class="button button--solid" href={content.seo.govTourismUrl} target="_blank" rel="noopener noreferrer">
+      {t('access.address.open')} <Icon name="external" size={18} />
+    </a>
+  </section>
+
+  <section class="section section--cream" id="faq">
+    <div class="container faq-layout">
+      <div class="faq-layout__heading">
+        <SectionHeading eyebrow={t('common.questions')} title={t('parking.faq.title')} />
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}<Icon name="chevron" size={22} /></summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('parking.cta.label')}</p>
+        <h2>{t('parking.cta.title')}</h2>
+        <p>{t('parking.cta.text')}</p>
+        <a class="button button--solid" href={localize('/access/')}><Icon name="arrow" size={18} />{t('parking.cta.button')}</a>
+      </div>
+    </div>
+  </section>
+
+  <SourcesSection locale={locale} />
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>
+
+<style>
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .info-card {
+    background: var(--color-white, #fff);
+    border: 1px solid color-mix(in srgb, var(--color-ink, #14213d) 12%, transparent);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .info-card__icon {
+    display: inline-flex;
+    color: var(--color-blue, #1b6ec2);
+    margin-bottom: 10px;
+  }
+  .info-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+  .info-card p { margin: 0; color: color-mix(in srgb, var(--color-ink, #14213d) 78%, transparent); line-height: 1.7; }
+</style>

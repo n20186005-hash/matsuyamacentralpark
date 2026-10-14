@@ -1,0 +1,94 @@
+---
+import { getContent } from '../../i18n/content';
+import { useTranslations } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+import Icon from '../../components/Icon.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import SectionHeading from '../SectionHeading.astro';
+import SourcesSection from '../SourcesSection.astro';
+import PhotoCredit from '../PhotoCredit.astro';
+
+interface Props {
+  locale: 'ja' | 'zh-Hant' | 'en';
+}
+const { locale } = Astro.props;
+const content = getContent(locale);
+const t = useTranslations(locale);
+const localize = (p: string) => localizePath(p, locale);
+
+const faqs = [
+  { q: t('parkmap.faq.q1'), a: t('parkmap.faq.a1') },
+  { q: t('parkmap.faq.q2'), a: t('parkmap.faq.a2') },
+];
+---
+<BaseLayout
+  locale={locale}
+  availableLocales={['ja', 'zh-Hant', 'en']}
+  title={t('parkmap.page.title')}
+  description={t('parkmap.page.description')}
+  currentPath={Astro.url.pathname}
+  bodyClass="parkmap-page"
+>
+  <PageHero
+    locale={locale}
+    eyebrow={t('parkmap.hero.eyebrow')}
+    title={t('parkmap.hero.title')}
+    lead={t('parkmap.hero.lead')}
+    image="/images/hero-1800.webp"
+    alt={content.facilities[0].alt}
+    current={t('parkmap.hero.eyebrow')}
+    tone="blue"
+  />
+
+  <section class="section container" id="intro">
+    <SectionHeading eyebrow={t('parkmap.intro.eyebrow')} title={t('parkmap.intro.title')} text={t('parkmap.intro.text')} />
+  </section>
+
+  <section class="section container" id="layout">
+    <SectionHeading eyebrow={t('parkmap.layout.eyebrow')} title={t('parkmap.layout.title')} text={t('parkmap.layout.text')} />
+  </section>
+
+  <section class="section section--blue" id="map">
+    <div class="container">
+      <SectionHeading eyebrow={t('parkmap.map.eyebrow')} title={t('parkmap.map.title')} text={t('parkmap.map.text')} />
+      <a class="button button--solid" href={content.seo.govTourismUrl} target="_blank" rel="noopener noreferrer">
+        {t('access.address.open')} <Icon name="external" size={18} />
+      </a>
+    </div>
+  </section>
+
+  <section class="section container" id="landmark">
+    <SectionHeading eyebrow={t('parkmap.landmark.eyebrow')} title={t('parkmap.landmark.title')} text={t('parkmap.landmark.text')} />
+  </section>
+
+  <section class="section section--cream" id="faq">
+    <div class="container faq-layout">
+      <div class="faq-layout__heading">
+        <SectionHeading eyebrow={t('common.questions')} title={t('parkmap.faq.title')} />
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}<Icon name="chevron" size={22} /></summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--cta">
+    <div class="container cta-grid">
+      <div>
+        <p class="cta-grid__eyebrow">{t('parkmap.cta.label')}</p>
+        <h2>{t('parkmap.cta.title')}</h2>
+        <p>{t('parkmap.cta.text')}</p>
+        <a class="button button--solid" href={localize('/parking/')}><Icon name="arrow" size={18} />{t('parkmap.cta.button')}</a>
+      </div>
+    </div>
+  </section>
+
+  <SourcesSection locale={locale} />
+  <PhotoCredit items={content.credits} heading={t('credits')} locale={locale} />
+</BaseLayout>

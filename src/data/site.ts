@@ -20,7 +20,9 @@ export type IconName =
   | 'track'
   | 'train'
   | 'walk'
-  | 'water';
+  | 'water'
+  | 'external'
+  | 'chevron';
 
 export interface NavigationItem {
   label: string;
